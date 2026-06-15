@@ -1,0 +1,82 @@
+2026-05-05 20:08:58 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-05 20:08:58 | stock_ai.llm | INFO     | signal_validator:204 | Starting Multi-Agent validation for RELIANCE
+2026-05-05 20:10:50 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-05 20:10:50 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-05 20:12:05 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-05 20:12:39 | stock_ai.llm | INFO     | signal_validator:209 | Multi-Agent verdict for RELIANCE: AVOID (confidence: 55) — While the 5G catalyst and momentum are overwhelmingly bullish, the confluence of
+2026-05-23 14:56:37 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:03:41 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:05:45 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:07:03 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:09:08 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:10:35 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:14:45 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:14:45 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for NYKAA.NS
+2026-05-23 15:16:27 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:17:01 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for NYKAA.NS: AVOID (confidence: 30) — The overwhelming positive sentiment and technical momentum are critically underm
+2026-05-23 15:17:01 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for HINDALCO.NS
+2026-05-23 15:17:53 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:19:05 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for HINDALCO.NS: AVOID (confidence: 20) — The confluence of critically weak predictive model signals (0.06 probability) an
+2026-05-23 15:19:05 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:19:05 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for DIXON.NS
+2026-05-23 15:20:46 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:21:25 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for DIXON.NS: AVOID (confidence: 25) — The overwhelming and sustained institutional selling pressure from FIIs, coupled
+2026-05-23 15:21:25 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for SIEMENS.NS
+2026-05-23 15:22:18 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:23:40 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for SIEMENS.NS: AVOID (confidence: 35) — Despite overwhelmingly positive sector sentiment, the low bullish probability an
+2026-05-23 15:23:40 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:23:40 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for DRREDDY.NS
+2026-05-23 15:25:11 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:25:42 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for DRREDDY.NS: AVOID (confidence: 25) — The proposed long trade is fundamentally undermined by the predictive ML Model's
+2026-05-23 15:26:38 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:27:25 | stock_ai.llm | INFO     | market_briefing:81 | Market briefing generated: bullish (score=0.40)
+2026-05-23 15:27:27 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:27:27 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:48:10 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:54:13 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:55:05 | stock_ai.llm | INFO     | market_briefing:81 | Market briefing generated: bullish (score=0.30)
+2026-05-23 15:55:07 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:55:08 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:55:08 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:55:08 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:56:13 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:56:13 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for NYKAA.NS
+2026-05-23 15:58:20 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:58:20 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 15:59:06 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for NYKAA.NS: AVOID (confidence: 30) — While fundamentals are highly bullish, the extreme contradiction between the str
+2026-05-23 15:59:06 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for HINDALCO.NS
+2026-05-23 15:59:29 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 16:00:51 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for HINDALCO.NS: AVOID (confidence: 25) — The quantitative warning from the ML Model (0.06 probability) and the low Volume
+2026-05-23 16:00:51 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 16:00:51 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for DIXON.NS
+2026-05-23 16:02:03 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 16:02:35 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for DIXON.NS: AVOID (confidence: 30) — The confluence of low predictive confidence, specific FII selling pressure, and 
+2026-05-23 16:02:35 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for SIEMENS.NS
+2026-05-23 16:03:14 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 16:10:30 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 16:11:03 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for SIEMENS.NS: HOLD (confidence: 45) — The strong fundamental tailwind from the power sector supports a long-term thesi
+2026-05-23 16:11:03 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for DRREDDY.NS
+2026-05-23 16:11:35 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-23 16:12:35 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for DRREDDY.NS: AVOID (confidence: 35) — The confluence of low-conviction signals, particularly the ML Model's extremely 
+2026-05-24 20:11:14 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:12:29 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:13:55 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:14:50 | stock_ai.llm | INFO     | market_briefing:81 | Market briefing generated: bearish (score=-0.40)
+2026-05-24 20:51:09 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:51:09 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for NYKAA.NS
+2026-05-24 20:52:21 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:52:49 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for NYKAA.NS: AVOID (confidence: 35) — Despite strong company-specific news and momentum, the systemic market weakness,
+2026-05-24 20:52:49 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for M&M.NS
+2026-05-24 20:53:35 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:54:43 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for M&M.NS: AVOID (confidence: 30) — The confluence of technical overextension (high RSI), the ML model's low bullish
+2026-05-24 20:54:43 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:54:43 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for HINDALCO.NS
+2026-05-24 20:56:08 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:56:42 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for HINDALCO.NS: AVOID (confidence: 35) — Despite localized positive news, the trade is fundamentally undermined by system
+2026-05-24 20:56:42 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for VBL.NS
+2026-05-24 20:57:31 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:58:46 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for VBL.NS: AVOID (confidence: 25) — The confluence of overbought technical readings, negligible ML confidence (0.16)
+2026-05-24 20:58:46 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 20:58:46 | stock_ai.llm | INFO     | signal_validator:265 | Starting Multi-Agent validation for SIEMENS.NS
+2026-05-24 21:00:20 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-05-24 21:01:01 | stock_ai.llm | INFO     | signal_validator:270 | Multi-Agent verdict for SIEMENS.NS: AVOID (confidence: 40) — Despite strong sector-specific bullish news, the decision to avoid a long trade 

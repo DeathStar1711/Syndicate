@@ -1,0 +1,18 @@
+
+╔═══════════════════════════════════════════════════════╗
+║           Stock-AI V2 — LLM Trading System            ║
+║                                                       ║
+║  API:       http://localhost:8000                   ║
+║  Dashboard: http://localhost:5173                     ║
+║  Docs:      http://localhost:8000/docs               ║
+╚═══════════════════════════════════════════════════════╝
+    
+INFO:     Started server process [4991]
+INFO:     Waiting for application startup.
+2026-06-01 21:55:00 | stock_ai.api | INFO     | server:28 | 🚀 Stock-AI V2 API starting...
+2026-06-01 21:55:00 | stock_ai.scheduler | INFO     | jobs:36 | ✅ Scheduler started with 6 jobs
+2026-06-01 21:55:00 | stock_ai.llm | INFO     | client:105 | ✅ Ollama health check OK — gemma4:e4b available
+2026-06-01 21:55:00 | stock_ai.api | INFO     | server:39 | ✅ Ollama connection OK — Gemma 4 E4B available
+2026-06-01 21:55:00 | stock_ai.api | INFO     | server:43 | ✅ Stock-AI V2 API ready
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

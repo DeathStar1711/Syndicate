@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# Environment
+.env
+.env.local
+
+# Data (runtime generated)
+backend/data/trades/
+backend/data/ml/
+backend/data/models/
+backend/data/logs/
+backend/data/reports/
+backend/data/historical/
+backend/data/*.json
+backend/data/*.lock
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# pytest
+.pytest_cache/

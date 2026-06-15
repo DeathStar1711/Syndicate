@@ -1,0 +1,315 @@
+2026-05-23 15:02:16 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:02:16 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:02 IST
+2026-05-23 15:02:16 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:02:16 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:02:16 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:04:29 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:04:29 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:04 IST
+2026-05-23 15:04:29 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:04:29 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:04:29 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:06:00 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:06:00 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:06 IST
+2026-05-23 15:06:00 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:06:00 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:06:00 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:07:16 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:07:16 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:07 IST
+2026-05-23 15:07:16 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:07:16 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:07:16 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:07:45 | stock_ai.strategy | INFO     | signals:64 | Step 2: Computing indicators and evaluating strategy...
+2026-05-23 15:09:27 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:09:27 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:09 IST
+2026-05-23 15:09:27 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:09:27 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:09:27 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:09:56 | stock_ai.strategy | INFO     | signals:64 | Step 2: Computing indicators and evaluating strategy...
+2026-05-23 15:12:32 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:12:32 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:12 IST
+2026-05-23 15:12:32 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:12:32 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:12:32 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:13:00 | stock_ai.strategy | INFO     | signals:64 | Step 2: Computing indicators and evaluating strategy...
+2026-05-23 15:13:21 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: BAJAJ-AUTO.NS LONG @ ₹10549.50 | SL: ₹10152.96 | Target: ₹11342.57 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 3
+2026-05-23 15:13:21 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 1 shares @ ₹10549.50, Risk: ₹396.54 (0.4%), Position: ₹10549.50
+2026-05-23 15:13:24 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SUNPHARMA.NS LONG @ ₹1844.60 | SL: ₹1785.23 | Target: ₹1963.34 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 1
+2026-05-23 15:13:24 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 10 shares @ ₹1844.60, Risk: ₹593.70 (0.6%), Position: ₹18446.00
+2026-05-23 15:13:27 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DRREDDY.NS LONG @ ₹1307.20 | SL: ₹1259.71 | Target: ₹1402.17 | R:R: 2.0 | Confidence: 70/100 | Pros: 9 | Cons: 0
+2026-05-23 15:13:27 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 15 shares @ ₹1307.20, Risk: ₹712.35 (0.7%), Position: ₹19608.00
+2026-05-23 15:13:28 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: APOLLOHOSP.NS LONG @ ₹8362.50 | SL: ₹8116.50 | Target: ₹8854.50 | R:R: 2.0 | Confidence: 67/100 | Pros: 9 | Cons: 1
+2026-05-23 15:13:28 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹8362.50, Risk: ₹492.00 (0.5%), Position: ₹16725.00
+2026-05-23 15:13:34 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: ASIANPAINT.NS LONG @ ₹2639.80 | SL: ₹2540.81 | Target: ₹2837.78 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 2
+2026-05-23 15:13:34 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 7 shares @ ₹2639.80, Risk: ₹692.93 (0.7%), Position: ₹18478.60
+2026-05-23 15:13:38 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: HINDALCO.NS LONG @ ₹1109.20 | SL: ₹1064.50 | Target: ₹1198.60 | R:R: 2.0 | Confidence: 80/100 | Pros: 11 | Cons: 0
+2026-05-23 15:13:38 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 18 shares @ ₹1109.20, Risk: ₹804.60 (0.8%), Position: ₹19965.60
+2026-05-23 15:13:50 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DIVISLAB.NS LONG @ ₹6887.00 | SL: ₹6668.54 | Target: ₹7323.93 | R:R: 2.0 | Confidence: 60/100 | Pros: 8 | Cons: 2
+2026-05-23 15:13:50 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹6887.00, Risk: ₹436.92 (0.4%), Position: ₹13774.00
+2026-05-23 15:13:53 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: GRASIM.NS LONG @ ₹3155.30 | SL: ₹3043.43 | Target: ₹3379.04 | R:R: 2.0 | Confidence: 62/100 | Pros: 9 | Cons: 1
+2026-05-23 15:13:53 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 6 shares @ ₹3155.30, Risk: ₹671.22 (0.7%), Position: ₹18931.80
+2026-05-23 15:13:55 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: TATACONSUM.NS LONG @ ₹1191.80 | SL: ₹1142.31 | Target: ₹1290.78 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 3
+2026-05-23 15:13:55 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 16 shares @ ₹1191.80, Risk: ₹791.84 (0.8%), Position: ₹19068.80
+2026-05-23 15:14:04 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: NYKAA.NS LONG @ ₹277.25 | SL: ₹265.04 | Target: ₹301.67 | R:R: 2.0 | Confidence: 87/100 | Pros: 11 | Cons: 0
+2026-05-23 15:14:04 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 72 shares @ ₹277.25, Risk: ₹879.12 (0.9%), Position: ₹19962.00
+2026-05-23 15:14:05 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: POLICYBZR.NS LONG @ ₹1792.40 | SL: ₹1693.26 | Target: ₹1990.68 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 2
+2026-05-23 15:14:05 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 11 shares @ ₹1792.40, Risk: ₹1090.54 (1.1%), Position: ₹19716.40
+2026-05-23 15:14:08 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: TRENT.NS LONG @ ₹4296.50 | SL: ₹4128.89 | Target: ₹4631.73 | R:R: 2.0 | Confidence: 62/100 | Pros: 8 | Cons: 2
+2026-05-23 15:14:08 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 4 shares @ ₹4296.50, Risk: ₹670.44 (0.7%), Position: ₹17186.00
+2026-05-23 15:14:09 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: VBL.NS LONG @ ₹539.45 | SL: ₹519.50 | Target: ₹579.35 | R:R: 2.0 | Confidence: 63/100 | Pros: 7 | Cons: 3
+2026-05-23 15:14:09 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 37 shares @ ₹539.45, Risk: ₹738.15 (0.7%), Position: ₹19959.65
+2026-05-23 15:14:18 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SIEMENS.NS LONG @ ₹3811.70 | SL: ₹3611.56 | Target: ₹4211.99 | R:R: 2.0 | Confidence: 75/100 | Pros: 9 | Cons: 1
+2026-05-23 15:14:18 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 5 shares @ ₹3811.70, Risk: ₹1000.70 (1.0%), Position: ₹19058.50
+2026-05-23 15:14:32 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SRF.NS LONG @ ₹2639.40 | SL: ₹2516.67 | Target: ₹2884.86 | R:R: 2.0 | Confidence: 55/100 | Pros: 7 | Cons: 3
+2026-05-23 15:14:32 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 7 shares @ ₹2639.40, Risk: ₹859.11 (0.9%), Position: ₹18475.80
+2026-05-23 15:14:38 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DIXON.NS LONG @ ₹11722.00 | SL: ₹10994.93 | Target: ₹13176.14 | R:R: 2.0 | Confidence: 80/100 | Pros: 9 | Cons: 1
+2026-05-23 15:14:38 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 1 shares @ ₹11722.00, Risk: ₹727.07 (0.7%), Position: ₹11722.00
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:123 | Step 3: Ranking signals...
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:128 | ======================================================================
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:129 | RESULTS: 5 signals generated from 16 candidates
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:130 | ======================================================================
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #1 NYKAA.NS — LONG
+  Entry: ₹277.25 | SL: ₹265.04 | Target: ₹301.67
+  R:R: 2.0:1 | Confidence: 72/100
+  Position: 72 shares (₹19,962.00)
+  Risk: ₹879.12 (0.9%)
+  News: POSITIVE | Nykaa hits 52-week high on strong Q4, pares gains later; bro...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 62 in optimal zone (40-65) | MACD histogram positive | Recent MACD bullish crossover | Strong volume surge (6.9x average) | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.27)
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #2 HINDALCO.NS — LONG
+  Entry: ₹1109.20 | SL: ₹1064.50 | Target: ₹1198.60
+  R:R: 2.0:1 | Confidence: 65/100
+  Position: 18 shares (₹19,965.60)
+  Risk: ₹804.60 (0.8%)
+  News: NEUTRAL | Hindalco Industries Limited Board Meeting scheduled for May ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 64 in optimal zone (40-65) | MACD histogram positive | MACD bullish crossover | Normal volume | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.05)
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #3 DIXON.NS — LONG
+  Entry: ₹11722.00 | SL: ₹10994.93 | Target: ₹13176.14
+  R:R: 2.0:1 | Confidence: 65/100
+  Position: 1 shares (₹11,722.00)
+  Risk: ₹727.07 (0.7%)
+  News: NEUTRAL | Dixon Technologies (India) - FIIs trim holdings in 10 midcap...
+  Reasons: Price > EMA 20 | Price > EMA 50 | EMA 9 > 20 > 50 (bullish alignment) | RSI 61 in optimal zone (40-65) | MACD histogram positive | MACD bullish crossover | Strong volume surge (1.8x average) | Increasing volume trend | Normal volatility — standard conditions
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #4 SIEMENS.NS — LONG
+  Entry: ₹3811.70 | SL: ₹3611.56 | Target: ₹4211.99
+  R:R: 2.0:1 | Confidence: 60/100
+  Position: 5 shares (₹19,058.50)
+  Risk: ₹1,000.70 (1.0%)
+  News: POSITIVE | Power stocks in demand; Hitachi, Siemens Energy, GE Vernova ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 60 in optimal zone (40-65) | Above-average volume (1.3x) | Increasing volume trend | Normal volatility — standard conditions | Strong positive sentiment (+0.36)
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #5 DRREDDY.NS — LONG
+  Entry: ₹1307.20 | SL: ₹1259.71 | Target: ₹1402.17
+  R:R: 2.0:1 | Confidence: 55/100
+  Position: 15 shares (₹19,608.00)
+  Risk: ₹712.35 (0.7%)
+  News: NEUTRAL | Stocks to Watch for May 21: Aditya Birla Capital, Dr Reddy's...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 52 in optimal zone (40-65) | MACD histogram positive | Normal volume | Increasing volume trend | Normal volatility — standard conditions
+2026-05-23 15:14:45 | stock_ai.strategy | INFO     | signals:155 | 
+══════════════════════════════════════════════════════════════════════
+  ⚠ DISCLAIMER: These are paper trading signals for research only.
+  They do not constitute financial advice and do not guarantee returns.
+══════════════════════════════════════════════════════════════════════
+2026-05-23 15:51:45 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-23 15:51:45 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-23 15:51 IST
+2026-05-23 15:51:45 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-23 15:51:45 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-23 15:51:45 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-23 15:52:11 | stock_ai.strategy | INFO     | signals:64 | Step 2: Computing indicators and evaluating strategy...
+2026-05-23 15:52:52 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: BAJAJ-AUTO.NS LONG @ ₹10549.50 | SL: ₹10152.96 | Target: ₹11342.57 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 3
+2026-05-23 15:52:52 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 1 shares @ ₹10549.50, Risk: ₹396.54 (0.4%), Position: ₹10549.50
+2026-05-23 15:52:57 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SUNPHARMA.NS LONG @ ₹1844.60 | SL: ₹1785.23 | Target: ₹1963.34 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 1
+2026-05-23 15:52:57 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 10 shares @ ₹1844.60, Risk: ₹593.70 (0.6%), Position: ₹18446.00
+2026-05-23 15:53:01 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DRREDDY.NS LONG @ ₹1307.20 | SL: ₹1259.71 | Target: ₹1402.17 | R:R: 2.0 | Confidence: 70/100 | Pros: 9 | Cons: 0
+2026-05-23 15:53:01 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 15 shares @ ₹1307.20, Risk: ₹712.35 (0.7%), Position: ₹19608.00
+2026-05-23 15:53:05 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: APOLLOHOSP.NS LONG @ ₹8362.50 | SL: ₹8116.50 | Target: ₹8854.50 | R:R: 2.0 | Confidence: 67/100 | Pros: 9 | Cons: 1
+2026-05-23 15:53:05 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹8362.50, Risk: ₹492.00 (0.5%), Position: ₹16725.00
+2026-05-23 15:53:18 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: ASIANPAINT.NS LONG @ ₹2639.80 | SL: ₹2540.81 | Target: ₹2837.78 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 2
+2026-05-23 15:53:18 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 7 shares @ ₹2639.80, Risk: ₹692.93 (0.7%), Position: ₹18478.60
+2026-05-23 15:53:27 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: HINDALCO.NS LONG @ ₹1109.20 | SL: ₹1064.50 | Target: ₹1198.60 | R:R: 2.0 | Confidence: 80/100 | Pros: 11 | Cons: 0
+2026-05-23 15:53:27 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 18 shares @ ₹1109.20, Risk: ₹804.60 (0.8%), Position: ₹19965.60
+2026-05-23 15:53:49 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DIVISLAB.NS LONG @ ₹6887.00 | SL: ₹6668.54 | Target: ₹7323.93 | R:R: 2.0 | Confidence: 60/100 | Pros: 8 | Cons: 2
+2026-05-23 15:53:49 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹6887.00, Risk: ₹436.92 (0.4%), Position: ₹13774.00
+2026-05-23 15:53:57 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: GRASIM.NS LONG @ ₹3155.30 | SL: ₹3043.43 | Target: ₹3379.04 | R:R: 2.0 | Confidence: 62/100 | Pros: 9 | Cons: 1
+2026-05-23 15:53:57 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 6 shares @ ₹3155.30, Risk: ₹671.22 (0.7%), Position: ₹18931.80
+2026-05-23 15:54:02 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: TATACONSUM.NS LONG @ ₹1191.80 | SL: ₹1142.31 | Target: ₹1290.78 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 3
+2026-05-23 15:54:02 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 16 shares @ ₹1191.80, Risk: ₹791.84 (0.8%), Position: ₹19068.80
+2026-05-23 15:54:22 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: NYKAA.NS LONG @ ₹277.25 | SL: ₹265.04 | Target: ₹301.67 | R:R: 2.0 | Confidence: 87/100 | Pros: 11 | Cons: 0
+2026-05-23 15:54:22 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 72 shares @ ₹277.25, Risk: ₹879.12 (0.9%), Position: ₹19962.00
+2026-05-23 15:54:25 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: POLICYBZR.NS LONG @ ₹1792.40 | SL: ₹1693.26 | Target: ₹1990.68 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 2
+2026-05-23 15:54:25 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 11 shares @ ₹1792.40, Risk: ₹1090.54 (1.1%), Position: ₹19716.40
+2026-05-23 15:54:31 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: TRENT.NS LONG @ ₹4296.50 | SL: ₹4128.89 | Target: ₹4631.73 | R:R: 2.0 | Confidence: 62/100 | Pros: 8 | Cons: 2
+2026-05-23 15:54:31 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 4 shares @ ₹4296.50, Risk: ₹670.44 (0.7%), Position: ₹17186.00
+2026-05-23 15:54:36 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: VBL.NS LONG @ ₹539.45 | SL: ₹519.50 | Target: ₹579.35 | R:R: 2.0 | Confidence: 63/100 | Pros: 7 | Cons: 3
+2026-05-23 15:54:36 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 37 shares @ ₹539.45, Risk: ₹738.15 (0.7%), Position: ₹19959.65
+2026-05-23 15:54:56 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SIEMENS.NS LONG @ ₹3811.70 | SL: ₹3611.56 | Target: ₹4211.99 | R:R: 2.0 | Confidence: 75/100 | Pros: 9 | Cons: 1
+2026-05-23 15:54:56 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 5 shares @ ₹3811.70, Risk: ₹1000.70 (1.0%), Position: ₹19058.50
+2026-05-23 15:55:27 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SRF.NS LONG @ ₹2639.40 | SL: ₹2516.67 | Target: ₹2884.86 | R:R: 2.0 | Confidence: 55/100 | Pros: 7 | Cons: 3
+2026-05-23 15:55:27 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 7 shares @ ₹2639.40, Risk: ₹859.11 (0.9%), Position: ₹18475.80
+2026-05-23 15:55:39 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DIXON.NS LONG @ ₹11722.00 | SL: ₹10994.93 | Target: ₹13176.14 | R:R: 2.0 | Confidence: 80/100 | Pros: 9 | Cons: 1
+2026-05-23 15:55:39 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 1 shares @ ₹11722.00, Risk: ₹727.07 (0.7%), Position: ₹11722.00
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:123 | Step 3: Ranking signals...
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:128 | ======================================================================
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:129 | RESULTS: 5 signals generated from 16 candidates
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:130 | ======================================================================
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #1 NYKAA.NS — LONG
+  Entry: ₹277.25 | SL: ₹265.04 | Target: ₹301.67
+  R:R: 2.0:1 | Confidence: 72/100
+  Position: 72 shares (₹19,962.00)
+  Risk: ₹879.12 (0.9%)
+  News: POSITIVE | Nykaa hits 52-week high on strong Q4, pares gains later; bro...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 62 in optimal zone (40-65) | MACD histogram positive | Recent MACD bullish crossover | Strong volume surge (6.9x average) | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.27)
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #2 HINDALCO.NS — LONG
+  Entry: ₹1109.20 | SL: ₹1064.50 | Target: ₹1198.60
+  R:R: 2.0:1 | Confidence: 65/100
+  Position: 18 shares (₹19,965.60)
+  Risk: ₹804.60 (0.8%)
+  News: NEUTRAL | Hindalco Industries Limited Board Meeting scheduled for May ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 64 in optimal zone (40-65) | MACD histogram positive | MACD bullish crossover | Normal volume | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.05)
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #3 DIXON.NS — LONG
+  Entry: ₹11722.00 | SL: ₹10994.93 | Target: ₹13176.14
+  R:R: 2.0:1 | Confidence: 65/100
+  Position: 1 shares (₹11,722.00)
+  Risk: ₹727.07 (0.7%)
+  News: NEUTRAL | Dixon Technologies (India) - FIIs trim holdings in 10 midcap...
+  Reasons: Price > EMA 20 | Price > EMA 50 | EMA 9 > 20 > 50 (bullish alignment) | RSI 61 in optimal zone (40-65) | MACD histogram positive | MACD bullish crossover | Strong volume surge (1.8x average) | Increasing volume trend | Normal volatility — standard conditions
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #4 SIEMENS.NS — LONG
+  Entry: ₹3811.70 | SL: ₹3611.56 | Target: ₹4211.99
+  R:R: 2.0:1 | Confidence: 60/100
+  Position: 5 shares (₹19,058.50)
+  Risk: ₹1,000.70 (1.0%)
+  News: POSITIVE | Power stocks in demand; Hitachi, Siemens Energy, GE Vernova ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 60 in optimal zone (40-65) | Above-average volume (1.3x) | Increasing volume trend | Normal volatility — standard conditions | Strong positive sentiment (+0.40)
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #5 DRREDDY.NS — LONG
+  Entry: ₹1307.20 | SL: ₹1259.71 | Target: ₹1402.17
+  R:R: 2.0:1 | Confidence: 55/100
+  Position: 15 shares (₹19,608.00)
+  Risk: ₹712.35 (0.7%)
+  News: NEUTRAL | Stocks to Watch for May 21: Aditya Birla Capital, Dr Reddy's...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 52 in optimal zone (40-65) | MACD histogram positive | Normal volume | Increasing volume trend | Normal volatility — standard conditions
+2026-05-23 15:56:13 | stock_ai.strategy | INFO     | signals:155 | 
+══════════════════════════════════════════════════════════════════════
+  ⚠ DISCLAIMER: These are paper trading signals for research only.
+  They do not constitute financial advice and do not guarantee returns.
+══════════════════════════════════════════════════════════════════════
+2026-05-24 20:46:01 | stock_ai.strategy | INFO     | signals:50 | ======================================================================
+2026-05-24 20:46:01 | stock_ai.strategy | INFO     | signals:51 | SIGNAL GENERATION — 2026-05-24 20:46 IST
+2026-05-24 20:46:01 | stock_ai.strategy | INFO     | signals:52 | Analyzing 88 stocks | Capital: ₹100,000
+2026-05-24 20:46:01 | stock_ai.strategy | INFO     | signals:53 | ======================================================================
+2026-05-24 20:46:01 | stock_ai.strategy | INFO     | signals:56 | Step 1: Fetching latest market data...
+2026-05-24 20:46:37 | stock_ai.strategy | INFO     | signals:64 | Step 2: Computing indicators and evaluating strategy...
+2026-05-24 20:47:15 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: M&M.NS LONG @ ₹384.35 | SL: ₹364.50 | Target: ₹424.06 | R:R: 2.0 | Confidence: 80/100 | Pros: 10 | Cons: 1
+2026-05-24 20:47:15 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 52 shares @ ₹384.35, Risk: ₹1032.20 (1.0%), Position: ₹19986.20
+2026-05-24 20:47:20 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: BAJAJ-AUTO.NS LONG @ ₹10549.50 | SL: ₹10152.96 | Target: ₹11342.57 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 3
+2026-05-24 20:47:20 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 1 shares @ ₹10549.50, Risk: ₹396.54 (0.4%), Position: ₹10549.50
+2026-05-24 20:47:26 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SUNPHARMA.NS LONG @ ₹1844.60 | SL: ₹1785.23 | Target: ₹1963.34 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 1
+2026-05-24 20:47:26 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 10 shares @ ₹1844.60, Risk: ₹593.70 (0.6%), Position: ₹18446.00
+2026-05-24 20:47:29 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DRREDDY.NS LONG @ ₹1307.20 | SL: ₹1259.71 | Target: ₹1402.17 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 1
+2026-05-24 20:47:29 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 15 shares @ ₹1307.20, Risk: ₹712.35 (0.7%), Position: ₹19608.00
+2026-05-24 20:47:33 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: CIPLA.NS LONG @ ₹1399.20 | SL: ₹1344.99 | Target: ₹1507.63 | R:R: 2.0 | Confidence: 55/100 | Pros: 6 | Cons: 3
+2026-05-24 20:47:33 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 14 shares @ ₹1399.20, Risk: ₹758.94 (0.8%), Position: ₹19588.80
+2026-05-24 20:47:38 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: APOLLOHOSP.NS LONG @ ₹8362.50 | SL: ₹8116.50 | Target: ₹8854.50 | R:R: 2.0 | Confidence: 65/100 | Pros: 8 | Cons: 2
+2026-05-24 20:47:38 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹8362.50, Risk: ₹492.00 (0.5%), Position: ₹16725.00
+2026-05-24 20:47:52 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: ASIANPAINT.NS LONG @ ₹2639.80 | SL: ₹2540.81 | Target: ₹2837.78 | R:R: 2.0 | Confidence: 73/100 | Pros: 9 | Cons: 1
+2026-05-24 20:47:52 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 7 shares @ ₹2639.80, Risk: ₹692.93 (0.7%), Position: ₹18478.60
+2026-05-24 20:47:58 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: JSWSTEEL.NS LONG @ ₹1285.50 | SL: ₹1246.79 | Target: ₹1362.92 | R:R: 2.0 | Confidence: 58/100 | Pros: 6 | Cons: 3
+2026-05-24 20:47:58 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 15 shares @ ₹1285.50, Risk: ₹580.65 (0.6%), Position: ₹19282.50
+2026-05-24 20:48:01 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: HINDALCO.NS LONG @ ₹1109.20 | SL: ₹1064.50 | Target: ₹1198.60 | R:R: 2.0 | Confidence: 80/100 | Pros: 11 | Cons: 0
+2026-05-24 20:48:01 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 18 shares @ ₹1109.20, Risk: ₹804.60 (0.8%), Position: ₹19965.60
+2026-05-24 20:48:24 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DIVISLAB.NS LONG @ ₹6887.00 | SL: ₹6668.54 | Target: ₹7323.93 | R:R: 2.0 | Confidence: 60/100 | Pros: 8 | Cons: 2
+2026-05-24 20:48:24 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹6887.00, Risk: ₹436.92 (0.4%), Position: ₹13774.00
+2026-05-24 20:48:30 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: GRASIM.NS LONG @ ₹3155.30 | SL: ₹3043.43 | Target: ₹3379.04 | R:R: 2.0 | Confidence: 57/100 | Pros: 8 | Cons: 2
+2026-05-24 20:48:30 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 6 shares @ ₹3155.30, Risk: ₹671.22 (0.7%), Position: ₹18931.80
+2026-05-24 20:48:36 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: TATACONSUM.NS LONG @ ₹1191.80 | SL: ₹1142.31 | Target: ₹1290.78 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 3
+2026-05-24 20:48:36 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 16 shares @ ₹1191.80, Risk: ₹791.84 (0.8%), Position: ₹19068.80
+2026-05-24 20:48:40 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: INDIGO.NS LONG @ ₹1003.40 | SL: ₹936.02 | Target: ₹1138.15 | R:R: 2.0 | Confidence: 57/100 | Pros: 7 | Cons: 3
+2026-05-24 20:48:40 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 19 shares @ ₹1003.40, Risk: ₹1280.22 (1.3%), Position: ₹19064.60
+2026-05-24 20:48:46 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: BEL.NS LONG @ ₹216.36 | SL: ₹204.98 | Target: ₹239.11 | R:R: 2.0 | Confidence: 70/100 | Pros: 9 | Cons: 1
+2026-05-24 20:48:46 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 92 shares @ ₹216.36, Risk: ₹1046.96 (1.0%), Position: ₹19905.12
+2026-05-24 20:49:01 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: NYKAA.NS LONG @ ₹277.25 | SL: ₹265.04 | Target: ₹301.67 | R:R: 2.0 | Confidence: 90/100 | Pros: 11 | Cons: 0
+2026-05-24 20:49:01 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 72 shares @ ₹277.25, Risk: ₹879.12 (0.9%), Position: ₹19962.00
+2026-05-24 20:49:05 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: POLICYBZR.NS LONG @ ₹1792.40 | SL: ₹1693.26 | Target: ₹1990.68 | R:R: 2.0 | Confidence: 60/100 | Pros: 7 | Cons: 2
+2026-05-24 20:49:05 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 11 shares @ ₹1792.40, Risk: ₹1090.54 (1.1%), Position: ₹19716.40
+2026-05-24 20:49:12 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: TRENT.NS LONG @ ₹4296.50 | SL: ₹4128.89 | Target: ₹4631.73 | R:R: 2.0 | Confidence: 62/100 | Pros: 8 | Cons: 2
+2026-05-24 20:49:12 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 4 shares @ ₹4296.50, Risk: ₹670.44 (0.7%), Position: ₹17186.00
+2026-05-24 20:49:17 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: VBL.NS LONG @ ₹539.45 | SL: ₹519.50 | Target: ₹579.35 | R:R: 2.0 | Confidence: 78/100 | Pros: 9 | Cons: 2
+2026-05-24 20:49:17 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 37 shares @ ₹539.45, Risk: ₹738.15 (0.7%), Position: ₹19959.65
+2026-05-24 20:49:34 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SIEMENS.NS LONG @ ₹3811.70 | SL: ₹3611.56 | Target: ₹4211.99 | R:R: 2.0 | Confidence: 75/100 | Pros: 9 | Cons: 1
+2026-05-24 20:49:34 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 5 shares @ ₹3811.70, Risk: ₹1000.70 (1.0%), Position: ₹19058.50
+2026-05-24 20:49:42 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: POLYCAB.NS LONG @ ₹9263.50 | SL: ₹8910.20 | Target: ₹9970.11 | R:R: 2.0 | Confidence: 57/100 | Pros: 7 | Cons: 3
+2026-05-24 20:49:42 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 2 shares @ ₹9263.50, Risk: ₹706.60 (0.7%), Position: ₹18527.00
+2026-05-24 20:50:07 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: SRF.NS LONG @ ₹2639.40 | SL: ₹2516.67 | Target: ₹2884.86 | R:R: 2.0 | Confidence: 55/100 | Pros: 7 | Cons: 3
+2026-05-24 20:50:07 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 7 shares @ ₹2639.40, Risk: ₹859.11 (0.9%), Position: ₹18475.80
+2026-05-24 20:50:22 | stock_ai.strategy | INFO     | rules:151 | SIGNAL: DIXON.NS LONG @ ₹11722.00 | SL: ₹10994.93 | Target: ₹13176.14 | R:R: 2.0 | Confidence: 72/100 | Pros: 9 | Cons: 2
+2026-05-24 20:50:22 | stock_ai.strategy | INFO     | position_sizing:76 | Position size: 1 shares @ ₹11722.00, Risk: ₹727.07 (0.7%), Position: ₹11722.00
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:123 | Step 3: Ranking signals...
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:128 | ======================================================================
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:129 | RESULTS: 5 signals generated from 22 candidates
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:130 | ======================================================================
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #1 NYKAA.NS — LONG
+  Entry: ₹277.25 | SL: ₹265.04 | Target: ₹301.67
+  R:R: 2.0:1 | Confidence: 75/100
+  Position: 72 shares (₹19,962.00)
+  Risk: ₹879.12 (0.9%)
+  News: POSITIVE | Nykaa hits 52-week high on strong Q4, pares gains later; bro...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 62 in optimal zone (40-65) | MACD histogram positive | MACD bullish crossover | Strong volume surge (6.6x average) | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.22)
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #2 M&M.NS — LONG
+  Entry: ₹384.35 | SL: ₹364.50 | Target: ₹424.06
+  R:R: 2.0:1 | Confidence: 65/100
+  Position: 52 shares (₹19,986.20)
+  Risk: ₹1,032.20 (1.0%)
+  News: POSITIVE | Links 5/23/2026...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | MACD histogram positive | MACD bullish crossover | Strong volume surge (17.1x average) | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.15)
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #3 HINDALCO.NS — LONG
+  Entry: ₹1109.20 | SL: ₹1064.50 | Target: ₹1198.60
+  R:R: 2.0:1 | Confidence: 65/100
+  Position: 18 shares (₹19,965.60)
+  Risk: ₹804.60 (0.8%)
+  News: POSITIVE | HINDALCO Share Price Today - Hindalco Industries on NSE/BSE ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 64 in optimal zone (40-65) | MACD histogram positive | MACD bullish crossover | Normal volume | Increasing volume trend | Normal volatility — standard conditions | Mildly positive sentiment (+0.10)
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #4 VBL.NS — LONG
+  Entry: ₹539.45 | SL: ₹519.50 | Target: ₹579.35
+  R:R: 2.0:1 | Confidence: 63/100
+  Position: 37 shares (₹19,959.65)
+  Risk: ₹738.15 (0.7%)
+  News: NEUTRAL | ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | MACD histogram positive | MACD bullish crossover | Strong volume surge (2.3x average) | Increasing volume trend | Normal volatility — standard conditions
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:142 | 
+──────────────────────────────────────────────────
+  #5 SIEMENS.NS — LONG
+  Entry: ₹3811.70 | SL: ₹3611.56 | Target: ₹4211.99
+  R:R: 2.0:1 | Confidence: 60/100
+  Position: 5 shares (₹19,058.50)
+  Risk: ₹1,000.70 (1.0%)
+  News: POSITIVE | Power stocks in demand; Hitachi, Siemens Energy, GE Vernova ...
+  Reasons: Price > EMA 20 | Price > EMA 50 | Price > EMA 200 (long-term uptrend) | EMA 9 > 20 > 50 (bullish alignment) | RSI 60 in optimal zone (40-65) | Above-average volume (1.3x) | Increasing volume trend | Normal volatility — standard conditions | Strong positive sentiment (+0.36)
+2026-05-24 20:51:08 | stock_ai.strategy | INFO     | signals:155 | 
+══════════════════════════════════════════════════════════════════════
+  ⚠ DISCLAIMER: These are paper trading signals for research only.
+  They do not constitute financial advice and do not guarantee returns.
+══════════════════════════════════════════════════════════════════════

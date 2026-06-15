@@ -1,0 +1,190 @@
+# ============================================================
+# Stock AI Project - Master Configuration
+# ============================================================
+# DISCLAIMER: This system is for research and paper trading only.
+# It does not guarantee returns and is not financial advice.
+# ============================================================
+
+capital:
+  starting_amount: 100000        # Starting capital in INR (₹1,00,000)
+  max_risk_per_trade_pct: 0.02   # Max 2% capital risk per trade
+  max_position_pct: 0.20         # Max 20% of capital in single position
+  max_open_positions: 5          # Maximum simultaneous open trades
+
+strategy:
+  # EMA periods
+  ema_fast: 9
+  ema_medium: 20
+  ema_slow: 50
+  ema_trend: 200
+
+  # RSI settings
+  rsi_period: 14
+  rsi_overbought: 70
+  rsi_oversold: 30
+
+  # MACD settings
+  macd_fast: 12
+  macd_slow: 26
+  macd_signal: 9
+
+  # ATR settings
+  atr_period: 14
+  atr_sl_multiplier: 1.5         # Stop-loss = ATR * multiplier
+  atr_target_multiplier: 3.0     # Target = ATR * multiplier
+
+  # Volume analysis
+  volume_sma_period: 20
+  volume_breakout_ratio: 1.2     # Volume must be 1.2x average for breakout
+
+  # Volatility regime (ATR percentile thresholds)
+  volatility_low: 25
+  volatility_high: 75
+  volatility_extreme: 90
+
+  # Signal selection
+  min_confidence: 55             # Minimum confidence to recommend (0-100)
+  max_signals: 5                 # Max daily recommendations
+  min_signals: 3                 # Minimum signals to try to find
+  min_risk_reward: 2.0           # Minimum risk-reward ratio
+
+trading:
+  paper_trading: true            # MUST be true for initial months
+  slippage_pct: 0.001            # 0.1% slippage estimate
+  max_holding_days: 10           # Force-close after N days
+  check_interval_minutes: 15     # Intraday monitoring interval
+
+schedule:
+  signal_time: "09:10"           # IST - morning signal generation
+  market_open: "09:15"           # IST - NSE market open
+  market_close: "15:30"          # IST - NSE market close
+  eod_eval_time: "15:45"        # IST - end-of-day evaluation
+
+email:
+  enabled: false                 # Optional — dashboard is primary UI now
+  send_morning_signals: false
+  send_exit_alerts: false
+  send_daily_report: false
+
+# ── V2: LLM Configuration (llama-3.3-70b-versatile via Groq) ──────────────
+llm:
+  enabled: true                    # Enable LLM-powered features
+  model: "llama-3.3-70b-versatile" # Groq model name
+  timeout_seconds: 60              # Max wait for LLM response
+  temperature: 0.3                 # Low temp for consistent analysis
+  features:
+    sentiment_analysis: true       # LLM replaces keyword sentiment
+    signal_validation: true        # LLM validates strategy picks
+    mistake_analysis: true         # LLM post-mortem on losses
+    market_briefing: true          # Daily market overview
+
+
+
+ml:
+  enabled: true                  # Enable ML confidence adjustment
+  model_type: "xgboost"          # "logistic_regression", "random_forest", or "xgboost"
+  training_window_years: 2       # Rolling training window
+  retrain_frequency: "weekly"    # How often to retrain
+  min_oos_improvement: 0.02      # Min OOS accuracy improvement to deploy (2%)
+  news_feature_weight: 0.15      # Max importance cap for news features
+  mistake_upweight: 2.0          # Sample weight multiplier for past mistakes
+  features:
+    - ema_9_slope
+    - ema_20_slope
+    - rsi_14
+    - macd_histogram
+    - volume_ratio
+    - atr_percentile
+    - returns_1d
+    - returns_5d
+    - news_sentiment_score
+    - news_volume
+    - news_recency_score
+
+news:
+  enabled: true                  # Enable news data fetching
+  tiingo_key_env: "TIINGO_API_KEY"  # Env var for Tiingo News API (primary)
+  newsapi_key_env: "NEWSAPI_KEY" # Env var for optional NewsAPI key (tertiary fallback)
+  max_headlines: 10              # Max headlines per stock
+  lookback_days: 7               # Days to look back for news (Deep News)
+  key_event_keywords:            # High-impact events to scan for
+    - merger
+    - acquisition
+    - earnings
+    - results
+    - fda
+    - contract
+    - partnership
+    - split
+    - bonus
+    - buyback
+    - stake
+    - invest
+    - divest
+    - launch
+    - order
+  sentiment_keywords:
+    positive:
+      - surge
+      - rally
+      - breakout
+      - upgrade
+      - beat
+      - profit
+      - growth
+      - bullish
+      - record
+      - high
+      - gain
+      - soar
+      - strong
+      - outperform
+      - buy
+      - accumulate
+      - recovery
+      - boost
+      - expand
+      - dividend
+      - acquisition
+      - partnership
+      - innovation
+      - approval
+    negative:
+      - crash
+      - plunge
+      - downgrade
+      - miss
+      - loss
+      - bearish
+      - fraud
+      - selloff
+      - sell-off
+      - slump
+      - warning
+      - probe
+      - investigation
+      - default
+      - debt
+      - layoff
+      - decline
+      - weak
+      - underperform
+      - sell
+      - risk
+      - concern
+      - cut
+      - suspension
+      - penalty
+
+backtest:
+  start_date: "2021-01-01"
+  end_date: "2025-12-31"
+  walk_forward_train_months: 12   # Train on 12 months
+  walk_forward_test_months: 3     # Test on 3 months
+  benchmark: "^NSEI"              # Nifty 50 index
+
+logging:
+  level: "INFO"                   # DEBUG, INFO, WARNING, ERROR
+  log_dir: "data/logs"
+  max_file_size_mb: 10
+  backup_count: 5

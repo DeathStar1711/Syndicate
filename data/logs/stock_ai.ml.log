@@ -1,0 +1,95 @@
+2026-05-23 14:56:46 | stock_ai.ml | INFO     | retrain:64 | ======================================================================
+2026-05-23 14:56:46 | stock_ai.ml | INFO     | retrain:65 | MODEL RETRAINING — 2026-05-23
+2026-05-23 14:56:46 | stock_ai.ml | INFO     | retrain:66 | ======================================================================
+2026-05-23 14:56:46 | stock_ai.ml | INFO     | retrain:73 | Step 0: Downloading historical data...
+2026-05-23 14:57:12 | stock_ai.ml | INFO     | retrain:83 | Step 1: Preparing features (technical + news)...
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | trainer:149 | Prepared 39891 samples from 86 tickers
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | trainer:150 |   Technical features: 12
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | trainer:151 |   Technical features: 12
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | trainer:152 |   News features: 3
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | trainer:153 |   Market features: 7
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | trainer:154 | Label distribution: {0: 24991, 1: 14900}
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | retrain:96 | Step 2: Analyzing past mistakes...
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | mistake_journal:329 | Loaded 0 mistake samples for retraining
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | retrain:115 |   No past mistakes recorded yet — first training run
+2026-05-23 15:00:53 | stock_ai.ml | INFO     | retrain:123 | Step 3: Training new model (with mistake upweighting)...
+2026-05-23 15:01:20 | stock_ai.ml | INFO     | trainer:217 |   Best params: {'n_estimators': 100, 'min_samples_leaf': 2, 'max_depth': None}
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:232 |   Baseline Precision (Random): 0.3735
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:268 |   Optimal Threshold: 0.5015
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:269 |   Precision @ Threshold: 0.6501 (Baseline: 0.3735)
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:270 |   Recall @ Threshold: 0.3286
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:309 | Training complete:
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:310 |   CV Precision: 0.6360 ± 0.0641
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:314 |   News feature importance: 6.7% of total
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:137 | Step 4: Comparing with current model...
+2026-05-23 15:01:24 | stock_ai.ml | WARNING  | trainer:336 | No trained model found
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:150 |   Current model accuracy: 0.0000
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:151 |   New model accuracy:     0.6789
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:152 |   Improvement:            +0.6789
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:153 |   Min required:           0.0200
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:162 |   Model Precision: 0.6501
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:163 |   Baseline Precision: 0.3735
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:164 |   Precision Lift: 1.74x
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:168 |   Reason: No current model
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | retrain:176 | ✅ DEPLOYING new model (improvement threshold met)
+2026-05-23 15:01:24 | stock_ai.ml | INFO     | trainer:328 | Model saved to /Users/shubhamac/Desktop/AI Projects/Stock-AI-V2/backend/data/models/model_latest.pkl
+2026-05-23 15:14:39 | stock_ai.ml | INFO     | predictor:57 | Loaded ML model with threshold: 0.50
+2026-05-23 15:14:39 | stock_ai.ml | INFO     | predictor:67 | Market features loaded for inference
+2026-05-23 15:14:39 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for BAJAJ-AUTO.NS: 60 → 45 (prob=0.10, adj=-15)
+2026-05-23 15:14:40 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SUNPHARMA.NS: 65 → 50 (prob=0.17, adj=-15)
+2026-05-23 15:14:40 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DRREDDY.NS: 70 → 55 (prob=0.07, adj=-15)
+2026-05-23 15:14:40 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for APOLLOHOSP.NS: 67 → 52 (prob=0.11, adj=-15)
+2026-05-23 15:14:41 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for ASIANPAINT.NS: 65 → 50 (prob=0.06, adj=-15)
+2026-05-23 15:14:41 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for HINDALCO.NS: 80 → 65 (prob=0.06, adj=-15)
+2026-05-23 15:14:42 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIVISLAB.NS: 60 → 45 (prob=0.09, adj=-15)
+2026-05-23 15:14:42 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for GRASIM.NS: 62 → 47 (prob=0.09, adj=-15)
+2026-05-23 15:14:42 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for TATACONSUM.NS: 60 → 45 (prob=0.12, adj=-15)
+2026-05-23 15:14:43 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for NYKAA.NS: 87 → 72 (prob=0.19, adj=-15)
+2026-05-23 15:14:43 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for POLICYBZR.NS: 60 → 45 (prob=0.09, adj=-15)
+2026-05-23 15:14:43 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for TRENT.NS: 62 → 47 (prob=0.10, adj=-15)
+2026-05-23 15:14:44 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for VBL.NS: 63 → 48 (prob=0.12, adj=-15)
+2026-05-23 15:14:44 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SIEMENS.NS: 75 → 60 (prob=0.12, adj=-15)
+2026-05-23 15:14:45 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SRF.NS: 55 → 40 (prob=0.23, adj=-15)
+2026-05-23 15:14:45 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIXON.NS: 80 → 65 (prob=0.38, adj=-15)
+2026-05-23 15:55:41 | stock_ai.ml | INFO     | predictor:57 | Loaded ML model with threshold: 0.50
+2026-05-23 15:55:42 | stock_ai.ml | INFO     | predictor:67 | Market features loaded for inference
+2026-05-23 15:55:44 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for BAJAJ-AUTO.NS: 60 → 45 (prob=0.10, adj=-15)
+2026-05-23 15:55:46 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SUNPHARMA.NS: 65 → 50 (prob=0.17, adj=-15)
+2026-05-23 15:55:48 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DRREDDY.NS: 70 → 55 (prob=0.07, adj=-15)
+2026-05-23 15:55:50 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for APOLLOHOSP.NS: 67 → 52 (prob=0.11, adj=-15)
+2026-05-23 15:55:52 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for ASIANPAINT.NS: 65 → 50 (prob=0.06, adj=-15)
+2026-05-23 15:55:54 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for HINDALCO.NS: 80 → 65 (prob=0.06, adj=-15)
+2026-05-23 15:55:56 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIVISLAB.NS: 60 → 45 (prob=0.09, adj=-15)
+2026-05-23 15:55:58 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for GRASIM.NS: 62 → 47 (prob=0.09, adj=-15)
+2026-05-23 15:56:00 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for TATACONSUM.NS: 60 → 45 (prob=0.12, adj=-15)
+2026-05-23 15:56:01 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for NYKAA.NS: 87 → 72 (prob=0.19, adj=-15)
+2026-05-23 15:56:03 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for POLICYBZR.NS: 60 → 45 (prob=0.09, adj=-15)
+2026-05-23 15:56:05 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for TRENT.NS: 62 → 47 (prob=0.10, adj=-15)
+2026-05-23 15:56:07 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for VBL.NS: 63 → 48 (prob=0.12, adj=-15)
+2026-05-23 15:56:08 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SIEMENS.NS: 75 → 60 (prob=0.09, adj=-15)
+2026-05-23 15:56:11 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SRF.NS: 55 → 40 (prob=0.23, adj=-15)
+2026-05-23 15:56:13 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIXON.NS: 80 → 65 (prob=0.38, adj=-15)
+2026-05-24 20:50:25 | stock_ai.ml | INFO     | predictor:57 | Loaded ML model with threshold: 0.50
+2026-05-24 20:50:25 | stock_ai.ml | INFO     | predictor:67 | Market features loaded for inference
+2026-05-24 20:50:27 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for M&M.NS: 80 → 65 (prob=0.23, adj=-15)
+2026-05-24 20:50:30 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for BAJAJ-AUTO.NS: 65 → 50 (prob=0.15, adj=-15)
+2026-05-24 20:50:32 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SUNPHARMA.NS: 65 → 50 (prob=0.22, adj=-15)
+2026-05-24 20:50:34 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DRREDDY.NS: 65 → 50 (prob=0.14, adj=-15)
+2026-05-24 20:50:36 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for CIPLA.NS: 55 → 40 (prob=0.16, adj=-15)
+2026-05-24 20:50:39 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for APOLLOHOSP.NS: 65 → 50 (prob=0.17, adj=-15)
+2026-05-24 20:50:40 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for ASIANPAINT.NS: 73 → 58 (prob=0.13, adj=-15)
+2026-05-24 20:50:42 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for JSWSTEEL.NS: 58 → 43 (prob=0.22, adj=-15)
+2026-05-24 20:50:44 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for HINDALCO.NS: 80 → 65 (prob=0.14, adj=-15)
+2026-05-24 20:50:47 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIVISLAB.NS: 60 → 45 (prob=0.09, adj=-15)
+2026-05-24 20:50:49 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for GRASIM.NS: 57 → 42 (prob=0.14, adj=-15)
+2026-05-24 20:50:51 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for TATACONSUM.NS: 60 → 45 (prob=0.12, adj=-15)
+2026-05-24 20:50:54 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for INDIGO.NS: 57 → 42 (prob=0.26, adj=-15)
+2026-05-24 20:50:56 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for BEL.NS: 70 → 55 (prob=0.22, adj=-15)
+2026-05-24 20:50:58 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for NYKAA.NS: 90 → 75 (prob=0.25, adj=-15)
+2026-05-24 20:50:59 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for POLICYBZR.NS: 60 → 45 (prob=0.12, adj=-15)
+2026-05-24 20:51:00 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for TRENT.NS: 62 → 47 (prob=0.10, adj=-15)
+2026-05-24 20:51:02 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for VBL.NS: 78 → 63 (prob=0.16, adj=-15)
+2026-05-24 20:51:03 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SIEMENS.NS: 75 → 60 (prob=0.15, adj=-15)
+2026-05-24 20:51:05 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for POLYCAB.NS: 57 → 42 (prob=0.22, adj=-15)
+2026-05-24 20:51:07 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SRF.NS: 55 → 40 (prob=0.19, adj=-15)
+2026-05-24 20:51:08 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIXON.NS: 72 → 57 (prob=0.34, adj=-15)
