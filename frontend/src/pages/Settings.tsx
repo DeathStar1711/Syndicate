@@ -94,9 +94,9 @@ export function Settings() {
 
       <div className="stats-grid status-grid-3" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
         <StatusCard
-          label="LLM (Ollama)"
+          label="LLM (Groq)"
           status={health?.llm?.healthy}
-          detail={health?.llm?.model || 'gemma4:e4b'}
+          detail={health?.llm?.model || 'llama-3.3-70b'}
         />
         <StatusCard
           label="Market"

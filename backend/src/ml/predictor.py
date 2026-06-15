@@ -116,7 +116,7 @@ class MLPredictor:
                     val = latest.get(col, np.nan)
                 feature_values.append(float(val) if not pd.isna(val) else 0.0)
 
-            X = np.array(feature_values).reshape(1, -1)
+            X = pd.DataFrame([feature_values], columns=FEATURE_COLUMNS)
             X_scaled = self.scaler.transform(X)
 
             # Get probability prediction

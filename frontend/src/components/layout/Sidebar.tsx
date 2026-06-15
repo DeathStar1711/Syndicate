@@ -12,8 +12,8 @@ export function Sidebar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-logo">
-        <span style={{ fontSize: 24 }}>📈</span>
-        Stock-AI V2
+        <img src="/logo.png" alt="Syndicate Logo" style={{ width: 32, height: 32, borderRadius: 8 }} />
+        <span>Syndicate</span>
       </div>
       <nav className="sidebar-nav">
         {links.map(({ to, icon: Icon, label }) => (
@@ -29,10 +29,27 @@ export function Sidebar() {
       </nav>
       <div className="sidebar-footer" style={{ marginTop: 'auto', padding: '16px 20px' }}>
         <div style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-          LLM: Gemma 4 E4B<br />
+          LLM: Groq<br />
           Paper Trading Mode
         </div>
       </div>
     </aside>
+  );
+}
+
+export function BottomNav() {
+  return (
+    <nav className="bottom-nav">
+      {links.map(({ to, icon: Icon, label }) => (
+        <NavLink
+          key={to}
+          to={to}
+          className={({ isActive }) => `bottom-nav-link ${isActive ? 'active' : ''}`}
+        >
+          <Icon size={20} />
+          <span>{label}</span>
+        </NavLink>
+      ))}
+    </nav>
   );
 }

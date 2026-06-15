@@ -1,6 +1,6 @@
 import { useCachedApi, readCache } from '../stores/dataCache';
 import { api } from '../services/api';
-import { TrendingUp, TrendingDown, DollarSign, Target, Trophy, AlertTriangle, RefreshCw } from 'lucide-react';
+import { TrendingUp, TrendingDown, IndianRupee, Target, Trophy, AlertTriangle, RefreshCw } from 'lucide-react';
 
 export function Dashboard() {
   const { data: portfolio, loading: portfolioLoading, refreshing: portfolioRefreshing } = useCachedApi(
@@ -58,7 +58,7 @@ export function Dashboard() {
       {/* Stats Grid */}
       <div className="stats-grid">
         <StatCard label="Total Invested" value={`₹${(summary?.invested_capital || 0).toLocaleString('en-IN')}`}
-          icon={<DollarSign size={18} />} />
+          icon={<IndianRupee size={18} />} />
         <StatCard label="Total P&L" value={`₹${(summary?.total_pnl || 0).toLocaleString('en-IN')}`}
           positive={(summary?.total_pnl || 0) >= 0} icon={(summary?.total_pnl || 0) >= 0 ? <TrendingUp size={18} /> : <TrendingDown size={18} />} />
         <StatCard label="Win Rate" value={`${summary?.win_rate || 0}%`}

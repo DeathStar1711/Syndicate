@@ -34,15 +34,16 @@ function PipelineLog({ steps, onClose }: { steps: PipelineStep[]; onClose: () =>
 
   return (
     <div style={{
-      background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.08)',
+      background: 'rgba(5, 5, 5, 0.7)', border: '1px solid var(--border)',
+      boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.5)',
       borderRadius: 'var(--radius-lg)', marginBottom: 24,
       maxHeight: 400, overflowY: 'auto', fontFamily: 'var(--font-mono)', fontSize: 12,
       position: 'relative',
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '12px 16px', zIndex: 10, borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: 0, background: 'rgba(5, 5, 5, 0.9)', backdropFilter: 'blur(12px)', padding: '12px 16px', zIndex: 10, borderBottom: '1px solid var(--border)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <Bot size={16} style={{ color: 'var(--accent)' }} />
-          <span style={{ fontSize: 13, fontWeight: 700, fontFamily: 'var(--font-primary)', color: 'var(--text-primary)' }}>
+          <Bot size={16} style={{ color: 'var(--accent-cyan)' }} />
+          <span style={{ fontSize: 13, fontWeight: 700, fontFamily: 'var(--font-display)', color: 'var(--text-primary)', letterSpacing: '0.5px' }}>
             AI Pipeline Log
           </span>
         </div>
