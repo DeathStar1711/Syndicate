@@ -1,7 +1,5 @@
 # Syndicate: Autonomous Multi-Agent Trading Desk
 
-![Syndicate Dashboard](frontend/src/assets/hero.png) <!-- Update this path if you have a real screenshot -->
-
 **Syndicate** (formerly Stock-AI-V2) is an institutional-grade, fully automated trading pipeline that combines deterministic Machine Learning (XGBoost) with cutting-edge Large Language Models (Llama-3.3 via Groq) to analyze, debate, and execute equity trades.
 
 ## Key Features
