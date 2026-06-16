@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { createChart, ColorType, CandlestickSeries, HistogramSeries } from 'lightweight-charts';
-import type { IChartApi, ISeriesApi } from 'lightweight-charts';
+import type { IChartApi } from 'lightweight-charts';
 
 interface ChartData {
   time: string;
@@ -36,9 +36,11 @@ export function TradingViewChart({
 }: TradingViewChartProps) {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
 
   useEffect(() => {
     if (!chartContainerRef.current) return;
+    setError(null);
 
     let chartInstance: IChartApi | null = null;
     try {
@@ -121,14 +123,16 @@ export function TradingViewChart({
       };
     } catch (e: any) {
       console.error("TradingView Chart Error:", e);
-      if (chartContainerRef.current) {
-        chartContainerRef.current.innerHTML = `<div style="color: red; padding: 10px; font-family: monospace; font-size: 11px;">Error: ${e.message}</div>`;
-      }
+      setError(e.message);
       if (chartInstance) {
         chartInstance.remove();
       }
     }
   }, [data, height, colors]);
+
+  if (error) {
+    return <div style={{ color: 'red', padding: '10px', fontFamily: 'monospace', fontSize: '11px' }}>Error: {error}</div>;
+  }
 
   return (
     <div

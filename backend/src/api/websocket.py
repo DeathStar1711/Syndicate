@@ -36,7 +36,8 @@ class ConnectionManager:
         for ws in self.active:
             try:
                 await ws.send_json(message)
-            except Exception:
+            except Exception as e:
+                logger.error(f"WebSocket broadcast failed: {e}")
                 dead.append(ws)
         for ws in dead:
             self.disconnect(ws)

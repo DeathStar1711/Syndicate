@@ -93,3 +93,15 @@
 2026-05-24 20:51:05 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for POLYCAB.NS: 57 → 42 (prob=0.22, adj=-15)
 2026-05-24 20:51:07 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for SRF.NS: 55 → 40 (prob=0.19, adj=-15)
 2026-05-24 20:51:08 | stock_ai.ml | INFO     | predictor:151 | ML adjustment for DIXON.NS: 72 → 57 (prob=0.34, adj=-15)
+2026-06-16 23:07:51 | stock_ai.ml | INFO     | trainer:159 | Prepared 460 samples from 1 tickers
+2026-06-16 23:07:51 | stock_ai.ml | INFO     | trainer:160 |   Technical features: 23
+2026-06-16 23:07:51 | stock_ai.ml | INFO     | trainer:161 |   Technical features: 23
+2026-06-16 23:07:51 | stock_ai.ml | INFO     | trainer:162 |   News features: 3
+2026-06-16 23:07:51 | stock_ai.ml | INFO     | trainer:163 |   Market features: 7
+2026-06-16 23:07:51 | stock_ai.ml | INFO     | trainer:164 | Label distribution: {0: 335, 1: 125}
+2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:159 | Prepared 460 samples from 1 tickers
+2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:160 |   Technical features: 23
+2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:161 |   Technical features: 23
+2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:162 |   News features: 3
+2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:163 |   Market features: 7
+2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:164 | Label distribution: {0: 335, 1: 125}

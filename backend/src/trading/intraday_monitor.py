@@ -68,10 +68,13 @@ class IntradayMonitor:
                     
                     if new_sl > stop_loss:
                         try:
-                            conn = self.trader._get_conn()
-                            conn.execute("UPDATE trades SET stop_loss = ? WHERE id = ?", (new_sl, trade_id))
-                            conn.commit()
-                            conn.close()
+                            from src.db.session import SessionLocal
+                            from src.db.models import Trade
+                            with SessionLocal() as db:
+                                trade_obj = db.query(Trade).filter(Trade.id == trade_id).first()
+                                if trade_obj:
+                                    trade_obj.stop_loss = new_sl
+                                    db.commit()
                             stop_loss = new_sl
                             logger.info(f"📈 Trailing SL raised to Break-Even/Profit for {ticker}: ₹{new_sl:.2f}")
                         except BaseException as e:
@@ -149,17 +152,22 @@ class IntradayMonitor:
 
         recorder = TickRecorder()
 
+        open_trades_cache = self.trader.get_open_positions()
+
         def on_tick(tick_data):
+            nonlocal open_trades_cache
             # 1. Record the tick for future ML
             recorder.record_tick(tick_data)
             
             # 2. Check exits instantly
             ticker = tick_data.get("ticker")
             ltp = tick_data.get("ltp")
-            if ltp is not None:
-                open_trades_current = self.trader.get_open_positions()
-                if open_trades_current:
-                    self._check_ticker_exits(ticker, ltp, open_trades_current)
+            if ltp is not None and open_trades_cache:
+                closed = self._check_ticker_exits(ticker, ltp, open_trades_cache)
+                if closed:
+                    # Update cache by removing closed trades
+                    closed_ids = {c["trade_id"] for c in closed}
+                    open_trades_cache = [t for t in open_trades_cache if t["id"] not in closed_ids]
 
         listener = GrowwFeedListener(tickers, on_tick)
         asyncio.run(listener.connect_and_listen())

@@ -1240,3 +1240,15 @@
 2026-06-01 22:14:56 | stock_ai.data | INFO     | fetcher:85 | Fetched 247 rows for VIVIMEDLAB.NS (period=1y)
 2026-06-01 22:14:56 | stock_ai.data | WARNING  | fetcher:118 | Failed to fetch data for: PRAGBOSIMI.NS
 2026-06-01 22:14:56 | stock_ai.data | INFO     | fetcher:120 | Successfully fetched 12/13 tickers
+2026-06-16 23:07:40 | stock_ai.data | WARNING  | news:110 | Google News RSS failed for MAC CHARLES  INDIA: 503 Server Error: Service Unavailable for url: https://news.google.com/rss/search?q=%22MAC+CHARLES++INDIA%22+stock&hl=en-IN&gl=IN&ceid=IN:en
+2026-06-16 23:07:44 | stock_ai.data | INFO     | market_context:25 | Fetching market context data (Nifty 50 & VIX) for 3y...
+2026-06-16 23:07:44 | stock_ai.data | INFO     | market_context:102 | Generated market features for 733 days
+2026-06-16 23:07:45 | stock_ai.data | INFO     | historical:117 | Loaded 739 rows of historical data for TCS.NS
+2026-06-16 23:07:51 | stock_ai.data | WARNING  | news:110 | Google News RSS failed for TCS.NS: 503 Server Error: Service Unavailable for url: https://news.google.com/rss/search?q=%22TCS%22+stock&hl=en-IN&gl=IN&ceid=IN:en
+2026-06-16 23:08:01 | stock_ai.data | WARNING  | news:107 | Google News RSS timed out for Indian market crash today
+2026-06-16 23:08:13 | stock_ai.data | WARNING  | news:110 | Google News RSS failed for MAC CHARLES  INDIA: 503 Server Error: Service Unavailable for url: https://news.google.com/rss/search?q=%22MAC+CHARLES++INDIA%22+stock&hl=en-IN&gl=IN&ceid=IN:en
+2026-06-16 23:08:14 | stock_ai.data | INFO     | market_context:25 | Fetching market context data (Nifty 50 & VIX) for 3y...
+2026-06-16 23:08:15 | stock_ai.data | INFO     | market_context:102 | Generated market features for 733 days
+2026-06-16 23:08:16 | stock_ai.data | INFO     | historical:117 | Loaded 739 rows of historical data for TCS.NS
+2026-06-16 23:08:25 | stock_ai.data | WARNING  | news:107 | Google News RSS timed out for TCS.NS
+2026-06-16 23:08:33 | stock_ai.data | WARNING  | news:110 | Google News RSS failed for Indian market crash today: 503 Server Error: Service Unavailable for url: https://news.google.com/rss/search?q=%22Indian+market+crash+today%22+stock&hl=en-IN&gl=IN&ceid=IN:en

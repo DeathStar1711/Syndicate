@@ -28,8 +28,8 @@ def _resolve_company_name(query: str) -> str:
             short_name = company_name.upper().replace("LTD.", "").replace("LIMITED", "").replace("LTD", "")
             short_name = re.sub(r'[^A-Z0-9\s]', ' ', short_name).strip()
             return short_name
-    except Exception:
-        pass
+    except Exception as e:
+        logger.debug(f"Failed to resolve company name for {query}: {e}")
     return ""
 
 
@@ -123,8 +123,6 @@ def _search_ddg(query: str, max_results: int = 5) -> List[Dict]:
     """
     try:
         from ddgs import DDGS
-        time.sleep(2.0)  # Rate limit protection
-
         clean_query = query.replace(".NS", "").replace(".BO", "").replace("EQ", "").strip()
 
         with DDGS() as ddgs:
@@ -139,7 +137,6 @@ def _search_ddg(query: str, max_results: int = 5) -> List[Dict]:
         if company_name:
             fallback_query = f"{company_name} stock news"
             logger.info(f"DDG empty for '{clean_query}'. Retrying with: '{fallback_query}'")
-            time.sleep(1.5)
             with DDGS() as ddgs:
                 results = list(ddgs.news(fallback_query, max_results=max_results))
             if results:

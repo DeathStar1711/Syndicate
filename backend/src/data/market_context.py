@@ -26,7 +26,7 @@ def get_market_features(period: str = "2y") -> pd.DataFrame:
     
     # 1. Fetch Data
     tickers = "^NSEI ^INDIAVIX"
-    data = yf.download(tickers, period=period, progress=False)
+    data = yf.download(tickers, period=period, progress=False, timeout=10)
     
     if data.empty:
         logger.error("Failed to fetch market data")

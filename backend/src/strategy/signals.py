@@ -102,12 +102,24 @@ def generate_signals(
     all_signals = []
     features_dict = {}
     
-    from src.data.groww_mcp import get_oi_analysis_sync
+    from src.data.groww_mcp import GrowwMCPClient
+    import asyncio
     
+    client = GrowwMCPClient.get_instance()
+    
+    async def fetch_oi_batch(tickers):
+        tasks = [client._get_open_interest_analysis_async(t.split(".")[0]) for t in tickers]
+        return await asyncio.gather(*tasks, return_exceptions=True)
+
+    oi_results = client.run_coroutine(fetch_oi_batch(list(data.keys()))) or []
+    oi_data_map = {}
+    for i, t in enumerate(data.keys()):
+        oi_data_map[t] = oi_results[i] if i < len(oi_results) and not isinstance(oi_results[i], Exception) else {}
+
     for ticker, df in data.items():
         try:
-            # Fetch OI data for the ticker
-            oi_data = get_oi_analysis_sync(ticker)
+            # Use pre-fetched OI data
+            oi_data = oi_data_map.get(ticker, {})
             
             # Compute all technical indicators
             df_with_features = compute_all_indicators(df, strategy_config, oi_data=oi_data, index_df=index_df)

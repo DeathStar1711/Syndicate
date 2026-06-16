@@ -216,7 +216,16 @@ async def close_trade(trade_id: int, req: CloseTradeRequest):
 
     # Get current price — guard against NaN (market closed)
     current_price = get_current_price(trade["ticker"], use_live_api=True)
-    if current_price is None or (isinstance(current_price, float) and (math.isnan(current_price) or math.isinf(current_price))):
+    
+    if current_price is not None:
+        try:
+            current_price = float(current_price)
+            if math.isnan(current_price) or math.isinf(current_price):
+                current_price = None
+        except (ValueError, TypeError):
+            current_price = None
+
+    if current_price is None:
         raise HTTPException(
             status_code=400,
             detail=f"Market is closed or price unavailable for {trade['ticker'].replace('.NS', '')}. Try again during market hours."

@@ -28,13 +28,18 @@ function notify() {
 }
 
 function getEntry<T>(key: string): CacheEntry<T> {
-  return (cache.get(key) as CacheEntry<T>) ?? {
-    data: null,
-    fetchedAt: 0,
-    isFetching: false,
-    fetchId: 0,
-    error: null,
-  };
+  let entry = cache.get(key) as CacheEntry<T> | undefined;
+  if (!entry) {
+    entry = {
+      data: null,
+      fetchedAt: 0,
+      isFetching: false,
+      fetchId: 0,
+      error: null,
+    };
+    cache.set(key, entry as CacheEntry);
+  }
+  return entry;
 }
 
 function setEntry<T>(key: string, patch: Partial<CacheEntry<T>>) {
@@ -118,7 +123,7 @@ export function useCachedApi<T>(
 
   const entry = useSyncExternalStore(subscribe, getSnapshot);
 
-  // Check if we need to fetch
+  // Check if we need to fetch immediately
   const hasData = entry.data !== null;
   const isStale = Date.now() - entry.fetchedAt > staleMs;
   const shouldFetch = (!hasData || isStale) && !entry.isFetching;
@@ -129,6 +134,18 @@ export function useCachedApi<T>(
       triggerFetch<T>(key, fetcherRef.current);
     }
   }, [key, shouldFetch]);
+
+  // Set up polling to check for staleness periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentEntry = getEntry<T>(key);
+      const currentlyStale = Date.now() - currentEntry.fetchedAt > staleMs;
+      if (currentlyStale && !currentEntry.isFetching) {
+        triggerFetch<T>(key, fetcherRef.current);
+      }
+    }, Math.min(staleMs, 10000)); // check at least every 10s or staleMs
+    return () => clearInterval(interval);
+  }, [key, staleMs]);
 
   /** Force a fresh fetch right now (e.g. after a mutation). */
   const refetch = useCallback(() => {

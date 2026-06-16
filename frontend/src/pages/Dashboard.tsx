@@ -1,4 +1,4 @@
-import { useCachedApi, readCache } from '../stores/dataCache';
+import { useCachedApi } from '../stores/dataCache';
 import { api } from '../services/api';
 import { TrendingUp, TrendingDown, IndianRupee, Target, Trophy, AlertTriangle, RefreshCw } from 'lucide-react';
 

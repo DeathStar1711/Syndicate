@@ -1,4 +1,4 @@
-import { useApi } from '../../hooks/useApi';
+import { useCachedApi } from '../../stores/dataCache';
 import { api } from '../../services/api';
 
 type MarketStatus = {
@@ -9,7 +9,7 @@ type MarketStatus = {
 };
 
 export function TopBar({ wsConnected }: { wsConnected: boolean }) {
-  const { data } = useApi<MarketStatus>(() => api.getMarketStatus(), []);
+  const { data } = useCachedApi<MarketStatus>('marketStatus', () => api.getMarketStatus(), 60_000);
 
   return (
     <div className="top-bar" style={{

@@ -123,6 +123,9 @@ class MLPredictor:
             proba = self.model.predict_proba(X_scaled)[0]
             bullish_prob = proba[1] if len(proba) > 1 else proba[0]
 
+            if pd.isna(bullish_prob):
+                return signal
+                
             # Adjust confidence: Based on dynamic threshold
             # If P > Threshold, boost confidence.
             # If P < Baseline, reduce confidence.

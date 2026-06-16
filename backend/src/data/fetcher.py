@@ -10,6 +10,9 @@ from src.utils.logger import get_logger
 logger = get_logger("stock_ai.data")
 
 
+import datetime
+from src.data.groww_mcp import get_historical_data_sync
+
 def fetch_latest(ticker: str, period: str = "60d", interval: str = "1d") -> Optional[pd.DataFrame]:
     """
     Fetch recent OHLCV data for a single ticker.
@@ -29,7 +32,6 @@ def fetch_latest(ticker: str, period: str = "60d", interval: str = "1d") -> Opti
         reraise=True
     )
     def _do_fetch(t, p, i):
-        import datetime
         end_date = datetime.date.today()
         # Parse simple periods like "1y", "60d", "5d", "6mo", etc.
         p_lower = p.lower()
@@ -50,8 +52,6 @@ def fetch_latest(ticker: str, period: str = "60d", interval: str = "1d") -> Opti
         elif i == "15m":
             interval_mins = "15"
             
-        from src.data.groww_mcp import get_historical_data_sync
-        
         df = get_historical_data_sync(
             ticker=t,
             start_date=start_date.strftime("%Y-%m-%d"),
@@ -141,7 +141,7 @@ def fetch_index(symbol: str = "^NSEI", period: str = "60d") -> Optional[pd.DataF
             
         df.columns = [col.lower() for col in df.columns]
         # Strip timezone if present
-        if df.index.tz is not None:
+        if hasattr(df.index, 'tz') and df.index.tz is not None:
             df.index = df.index.tz_localize(None)
             
         return df

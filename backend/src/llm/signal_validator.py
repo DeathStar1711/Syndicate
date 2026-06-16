@@ -491,6 +491,30 @@ def batch_validate_signals(
     """
     mistake_histories = mistake_histories or {}
 
+    from src.data.groww_mcp import GrowwMCPClient
+    import asyncio
+    
+    client = GrowwMCPClient.get_instance()
+    
+    async def fetch_mcp_batch(tickers):
+        tasks = []
+        for t in tickers:
+            symbol = t.split(".")[0]
+            tasks.append(client._get_open_interest_analysis_async(symbol))
+            tasks.append(client._get_historical_candlestick_patterns_async(t))
+        return await asyncio.gather(*tasks, return_exceptions=True)
+
+    tickers = [s.get("ticker", "") for s in signals]
+    mcp_results = client.run_coroutine(fetch_mcp_batch(tickers)) or []
+    mcp_data_map = {}
+    for i, t in enumerate(tickers):
+        oi_res = mcp_results[2*i] if i*2 < len(mcp_results) else None
+        pat_res = mcp_results[2*i+1] if i*2+1 < len(mcp_results) else None
+        mcp_data_map[t] = {
+            "oi": str(oi_res) if oi_res and not isinstance(oi_res, Exception) else "No OI data",
+            "patterns": str(pat_res) if pat_res and not isinstance(pat_res, Exception) else "No historical patterns"
+        }
+
     for signal in signals:
         ticker = signal.get("ticker", "")
         
@@ -511,19 +535,8 @@ def batch_validate_signals(
                 signal["company_name"] = ticker.replace(".NS", "").replace(".BO", "")
         
         # Fetch dynamic agent data (Groww MCP)
-        oi_data = "No OI data"
-        patterns_data = "No historical patterns"
-        try:
-            from src.data.groww_mcp import get_oi_analysis_sync, get_historical_patterns_sync
-            oi = get_oi_analysis_sync(ticker)
-            if oi:
-                oi_data = str(oi)
-            
-            pats = get_historical_patterns_sync(ticker)
-            if pats:
-                patterns_data = str(pats)
-        except Exception as e:
-            logger.warning(f"Failed to fetch MCP data for LLM: {e}")
+        oi_data = mcp_data_map.get(ticker, {}).get("oi", "No OI data")
+        patterns_data = mcp_data_map.get(ticker, {}).get("patterns", "No historical patterns")
 
         validation = validate_signal(
             signal,

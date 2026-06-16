@@ -1,9 +1,9 @@
-import { useState, useMemo, useEffect, useRef, useCallback, useSyncExternalStore } from 'react';
+import { useState, useMemo, useEffect, useRef, useSyncExternalStore } from 'react';
 import { useCachedApi, invalidateCache } from '../stores/dataCache';
 import {
   subscribe as pipelineSubscribe,
   getSteps, isGenerating, isShowLog, getHasRun,
-  startGeneration, addPipelineStep, finishGeneration,
+  startGeneration, finishGeneration,
   setShowLog as pipelineSetShowLog,
 } from '../stores/pipelineStore';
 import { useWebSocket } from '../hooks/useWebSocket';
@@ -143,28 +143,8 @@ export function Signals() {
   const showLog = useSyncExternalStore(pipelineSubscribe, isShowLog);
   const hasRun = useSyncExternalStore(pipelineSubscribe, getHasRun);
 
-  // Handle WebSocket events — always process pipeline steps regardless of
-  // which page the user is viewing (the store is global).
-  useWebSocket(useCallback((msg: any) => {
-    if (msg.type === 'pipeline_step') {
-      const step = msg.data;
-      addPipelineStep(step);
-
-      // Auto-show log when first pipeline step arrives
-      pipelineSetShowLog(true);
-
-      // If pipeline is complete or errored, stop generating
-      if (step.step === 'Pipeline Complete' || step.step === 'Pipeline Error') {
-        finishGeneration();
-        invalidateCache('signals');
-      }
-    }
-
-    if (msg.type === 'signals_updated') {
-      finishGeneration();
-      invalidateCache('signals');
-    }
-  }, []));
+  // WebSocket connection is now initialized globally, no need to register pipeline listeners here as they are handled in websocketStore.ts
+  useWebSocket();
 
   // Tickers already in portfolio
   const portfolioTickers = useMemo(() => {

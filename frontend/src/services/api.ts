@@ -4,22 +4,26 @@ export const api = {
   // ── Signals ───────────────────────────────────────
   async getSignals() {
     const res = await fetch(`${API_BASE}/api/signals`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   async generateSignals() {
     const res = await fetch(`${API_BASE}/api/signals/generate`, { method: 'POST' });
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   // ── Portfolio ─────────────────────────────────────
   async getPortfolio() {
     const res = await fetch(`${API_BASE}/api/portfolio`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   async getTradeHistory(limit = 50) {
     const res = await fetch(`${API_BASE}/api/portfolio/history?limit=${limit}`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
@@ -60,62 +64,51 @@ export const api = {
 
   // ── Market ────────────────────────────────────────
   async getMarketBriefing() {
-    // Cache the briefing for 1 hour on the frontend
-    if (this._briefingCache && Date.now() - this._briefingCacheTime < 3600000) {
-      return this._briefingCache;
-    }
     const res = await fetch(`${API_BASE}/api/market/briefing`);
-    const data = await res.json();
-    this._briefingCache = data;
-    this._briefingCacheTime = Date.now();
-    return data;
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    return res.json();
   },
-  
-  _briefingCache: null as any,
-  _briefingCacheTime: 0,
 
   async getMarketStatus() {
     const res = await fetch(`${API_BASE}/api/market/status`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   async getSectors() {
-    if (this._sectorsCache && Date.now() - this._sectorsCacheTime < 300000) {
-      return this._sectorsCache;
-    }
     const res = await fetch(`${API_BASE}/api/market/sectors`);
-    const data = await res.json();
-    this._sectorsCache = data;
-    this._sectorsCacheTime = Date.now();
-    return data;
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    return res.json();
   },
-
-  _sectorsCache: null as any,
-  _sectorsCacheTime: 0,
 
   async getHistoricalData(ticker: string, period: string = "3mo") {
     const res = await fetch(`${API_BASE}/api/market/history/${ticker}?period=${period}`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   // ── System ────────────────────────────────────────
   async getHealth() {
     const res = await fetch(`${API_BASE}/api/system/health`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   async runTask(task: string) {
     const res = await fetch(`${API_BASE}/api/system/run/${task}`, { method: 'POST' });
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   async getMLStatus() {
     const res = await fetch(`${API_BASE}/api/system/ml-status`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 
   async getMistakes() {
     const res = await fetch(`${API_BASE}/api/trades/mistakes`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     return res.json();
   },
 

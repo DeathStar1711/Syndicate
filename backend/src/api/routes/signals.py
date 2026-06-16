@@ -22,9 +22,7 @@ def _save_signals_to_db(signals_data: dict):
     """Save signals to database for persistence. Clears old signals first."""
     try:
         with SessionLocal() as db:
-            # Clear all old signals — we only keep the latest batch
-            db.query(Signal).delete()
-            db.commit()
+            # We preserve history and append new signals
 
             timestamp = datetime.fromisoformat(signals_data["timestamp"])
             for sig in signals_data.get("data", []):

@@ -1,0 +1,83 @@
+Sign up
+
+Sign in
+
+Get appWriteSearchSign up
+
+Sign in
+
+(3) Stock Price Prediction with ML in Python: XGBoost Model
+
+--
+
+1
+
+Listen
+
+Share
+
+In our first two articles, we discussed LSTM and GRU models. In this article, we will include the widely used XGBoost model.
+
+Method 3: XGBoost
+
+XGBoost is a widely recognized model that can be utilized for stock prediction. It is often outperforming other algorithms on a variety of tasks.
+
+Notably, its parallel processing capabilities significantly accelerate training times.
+
+XGBoost can automatically handle missing values, thereby simplifying the data preprocessing process.
+
+Most importantly, it offers comprehensive hyperparameter tuning options that provide detailed control over the performance of the model.
+
+It is worth noting that XGBoost can be complicated to tune and understand, especially for beginners, due to the large number of hyperparameters.
+
+Let’s get started then:
+
+pip install xgboost2. Import necessary libraries
+
+import pandas as pdimport numpy as npimport matplotlib.pyplot as pltfrom pandas_datareader import data as pdrimport yfinance as yffrom sklearn.preprocessing import MinMaxScalerfrom xgboost import XGBRegressorfrom datetime import datetime, timedeltafrom sklearn.metrics import mean_squared_error3. Grabbing the Data
+
+We will load our stock price data from yfinance into a Pandas DataFrame as we did in our first chapter and splittion data into training and test sets:
+
+# Ensure yfinance overridesyf.pdr_override()# Get the stock quotedf = pdr.get_data_yahoo(&#x27;AMD&#x27;, start=&#x27;2022-04-01&#x27;, end=datetime.now())# Create a new dataframe with only the &#x27;Close&#x27; columndata = df.filter([&#x27;Close&#x27;]).values# Scale the datascaler = MinMaxScaler(feature_range=(0, 1))scaled_data = scaler.fit_transform(data)# Split the data into training and validation setstraining_data_len = int(len(scaled_data) * 0.95)train_data = scaled_data[:training_data_len]valid_data = scaled_data[training_data_len:]# Function to create dataset for XGBoostdef create_dataset(dataset, time_step=1):    X, y = [], []    for i in range(len(dataset) - time_step):        X.append(dataset[i:(i + time_step), 0])        y.append(dataset[i + time_step, 0])    return np.array(X), np.array(y)# Define time step and create datasetstime_step = 60X_train, y_train = create_dataset(train_data, time_step)X_valid, y_valid = create_dataset(valid_data, time_step)4. Training the XGBoost Model and making forecast
+
+# Initialize and train the XGBoost modelxgb_model = XGBRegressor(objective =&#x27;reg:squarederror&#x27;, colsample_bytree = 0.3, learning_rate = 0.1, max_depth = 5, alpha = 10, n_estimators = 100)xgb_model.fit(X_train, y_train)# Predict future pricesfuture_prices = []# Get the last 60 days of datalast_60_days = scaled_data[-time_step:].reshape(1, -1)for i in range(10):    pred_price = xgb_model.predict(last_60_days)    future_prices.append(pred_price[0])    last_60_days = np.append(last_60_days, pred_price.reshape(1, -1), axis=1)[:, 1:]# Inverse transform the predicted pricesfuture_prices = scaler.inverse_transform(np.array(future_prices).reshape(-1, 1))If you wish to optimize your model, you can employ techniques such as Grid Search or Randomized Search to identify the best hyperparameters, as demonstrated below:
+
+from sklearn.model_selection import GridSearchCVparam_grid = {    &#x27;max_depth&#x27;: [3, 5, 7],    &#x27;learning_rate&#x27;: [0.01, 0.1, 0.2],    &#x27;n_estimators&#x27;: [50, 100, 200]}grid_search = GridSearchCV(estimator=xgb.XGBRegressor(objective=&#x27;reg:squarederror&#x27;), param_grid=param_grid, cv=3)grid_search.fit(X_train, y_train)print(grid_search.best_params_)5. Visualizing the Predictions
+
+plt.plot(df.index[-100:], df[&#x27;Close&#x27;].tail(100), label=&#x27;Historical Prices&#x27;)plt.plot(pd.date_range(df.index[-1], periods=10), future_prices, linestyle=&#x27;dashed&#x27;, color=&#x27;red&#x27;, label=&#x27;Future Predictions&#x27;)plt.title(&#x27;Stock Price Prediction for Next 10 Days using XGBoost&#x27;)plt.xlabel(&#x27;Date&#x27;)plt.ylabel(&#x27;Close Price (USD)&#x27;)plt.legend()plt.show()AMD Stock Prediction by XGBoostIn wrapping up, XGBoost is like the superhero of predictive modeling! It’s not just a fancy tool; it’s your trusty sidekick in the world of data analysis, especially when it comes to predicting stock prices. What’s so cool about XGBoost? Well, it’s like a magic wand that can handle all sorts of tricky data situations, from missing values to complex datasets. Plus, it gives you the power to tweak and fine-tune your model until it’s just right. Sure, it might seem a bit daunting at first, but once you get the hang of it, you’ll be amazed at what you can accomplish. So, if you’re ready to dive into the exciting world of predictive modeling, XGBoost is definitely the way to go!
+
+The code can be accessed through the GitHub link.
+
+Follow me from:
+
+LinkedIn, WordPress
+
+--
+
+--
+
+1
+
+Written by Sercan Bugra Gultekin139 followers·34 followingLover of edge technologies, coding enthusiast, close follower of AI topics and indomitable advocate of green energy
+
+Help
+
+Status
+
+About
+
+Careers
+
+Press
+
+Blog
+
+Store
+
+Privacy
+
+Rules
+
+Terms
+
+Text to speech

@@ -35,7 +35,7 @@ function ConfirmModal({ ticker, onConfirm, onCancel, loading }: {
 }
 
 export function Portfolio() {
-  const { data, loading, refreshing } = useCachedApi('portfolio', () => api.getPortfolio(), 30_000);
+  const { data, loading } = useCachedApi('portfolio', () => api.getPortfolio(), 10_000);
   const { data: history } = useCachedApi('trade_history', () => api.getTradeHistory(30), 60_000);
   const { prices } = useWebSocket();
   const [confirmCloseId, setConfirmCloseId] = useState<number | null>(null);

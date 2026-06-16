@@ -34,6 +34,7 @@ class GrowwDataClient:
             # Generate the access token using the API key and secret
             token = GrowwAPI.get_access_token(api_key=self.api_key, secret=self.api_secret)
             self.client = GrowwAPI(token)
+            self.token = token
             logger.info("Successfully authenticated with Groww API.")
         except Exception as e:
             logger.error(f"Failed to authenticate with Groww API: {e}")
@@ -47,8 +48,12 @@ class GrowwDataClient:
         try:
             # Note: Groww SDK generally asks for exchange identifiers in symbols.
             # Convert YF format 'RELIANCE.NS' -> 'NSE_RELIANCE'
-            symbol = ticker.replace(".NS", "").replace(".BO", "")
-            exchange_symbol = f"NSE_{symbol}"
+            if ticker.endswith(".BO"):
+                symbol = ticker.replace(".BO", "")
+                exchange_symbol = f"BSE_{symbol}"
+            else:
+                symbol = ticker.replace(".NS", "")
+                exchange_symbol = f"NSE_{symbol}"
             
             # The SDK method is get_ltp(exchange_trading_symbols, segment)
             response = self.client.get_ltp(exchange_trading_symbols=(exchange_symbol,), segment="CASH")

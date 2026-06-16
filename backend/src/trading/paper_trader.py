@@ -140,6 +140,14 @@ class PaperTrader:
             
             position_value = trade.position_value
             
+            # Atomic update of capital
+            from sqlalchemy import text
+            delta = position_value + pnl
+            db.execute(
+                text("UPDATE portfolio_state SET value = CAST(CAST(value AS REAL) + :delta AS TEXT) WHERE key = 'current_capital'"),
+                {"delta": delta}
+            )
+            
             db.commit()
             db.refresh(trade)
             
@@ -152,16 +160,6 @@ class PaperTrader:
                 "entry_date": trade.entry_date,
                 "metadata": trade.metadata_json
             }
-
-        # Update available capital
-        current_capital = self.get_capital()
-        new_capital = current_capital + position_value + pnl
-        
-        with SessionLocal() as db:
-            cap_state = db.query(PortfolioState).filter(PortfolioState.key == "current_capital").first()
-            if cap_state:
-                cap_state.value = str(new_capital)
-            db.commit()
 
         result = {
             "trade_id": trade_id,
