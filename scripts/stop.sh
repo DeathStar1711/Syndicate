@@ -37,4 +37,9 @@ if pgrep -f "chrome-devtools-mcp" > /dev/null ; then
 fi
 
 echo "✅ All Stock-AI services have been cleanly terminated."
-echo "ℹ️  Note: Local Ollama service is kept alive for other applications."
+
+# Kill Ollama
+if pgrep -x "ollama" > /dev/null ; then
+    echo "🤖 Killing local Ollama service..."
+    pkill -x "ollama" 2>/dev/null || true
+fi
