@@ -10,7 +10,7 @@ from typing import Optional, Dict, Any, List
 from collections import OrderedDict
 from datetime import datetime
 
-from groq import Groq
+from openai import OpenAI
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 
 from src.utils.logger import get_logger
@@ -64,15 +64,14 @@ class LLMClient:
     def __init__(self, config: Optional[dict] = None):
         self.config = config or load_config()
         llm_config = self.config.get("llm", {})
-        self.model = llm_config.get("model", "llama-3.3-70b-versatile")
+        self.model = llm_config.get("model", "gemma4:e4b")
         self.timeout = llm_config.get("timeout_seconds", 60)
         self.temperature = llm_config.get("temperature", 0.3)
         self.enabled = llm_config.get("enabled", True)
         self._healthy = None  # None = not checked yet
         self._last_health_check = 0
         
-        api_key = os.getenv("GROQ_API_KEY", "")
-        self.client = Groq(api_key=api_key) if api_key else None
+        self.client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
 
     def is_healthy(self, force_check: bool = False) -> bool:
         """
@@ -87,7 +86,7 @@ class LLMClient:
                 return self._healthy
 
         if not self.client:
-            logger.warning("GROQ_API_KEY not found in environment.")
+            logger.warning("OpenAI client not initialized.")
             self._healthy = False
             return False
 
@@ -101,14 +100,14 @@ class LLMClient:
             
             if not self._healthy:
                 logger.warning(
-                    f"Model '{self.model}' not found in Groq. "
+                    f"Model '{self.model}' not found in Ollama. "
                     f"Available: {available[:5]}..."
                 )
             else:
-                logger.info(f"✅ Groq API health check OK — {self.model} available")
+                logger.info(f"✅ Ollama health check OK — {self.model} available")
 
         except Exception as e:
-            logger.warning(f"Groq health check failed: {e}")
+            logger.warning(f"Ollama health check failed: {e}")
             self._healthy = False
 
         self._last_health_check = time.time()
