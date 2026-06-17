@@ -182,14 +182,18 @@ class MLTrainer:
             logger.error("Insufficient samples for training")
             return {"error": "Insufficient data"}
 
+        # Split: last 20% for OOS validation (before scaling to avoid leakage)
+        split_idx = int(len(X) * 0.8)
+        X_train_raw = X.iloc[:split_idx]
+        X_test_raw = X.iloc[split_idx:]
+        y_train = y.iloc[:split_idx]
+        y_test = y.iloc[split_idx:]
+
         # Scale features using RobustScaler (handles financial outliers better than Standard)
         scaler = RobustScaler()
-        X_scaled = scaler.fit_transform(X)
-
-        # Split: last 20% for OOS validation
-        split_idx = int(len(X) * 0.8)
-        X_train, X_test = X_scaled[:split_idx], X_scaled[split_idx:]
-        y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
+        X_train = scaler.fit_transform(X_train_raw)
+        X_test = scaler.transform(X_test_raw)
+        X_scaled = scaler.transform(X)
 
         # Prepare sample weights for training split
         train_weights = None
@@ -240,7 +244,7 @@ class MLTrainer:
         # Calibrate probabilities for true mathematical probability outputs
         # We use 'isotonic' for >1000 samples generally, but 'sigmoid' (Platt Scaling) is safer for smaller sets.
         calibrator = CalibratedClassifierCV(estimator=search.best_estimator_, method='sigmoid', cv=5)
-        calibrator.fit(X_train, y_train)
+        calibrator.fit(X_train, y_train, sample_weight=train_weights)
         
         model = calibrator
 
@@ -282,10 +286,12 @@ class MLTrainer:
         
         if not found_threshold:
             # Fallback: Find threshold maximizing F1 score if target not met
-            f1_scores = 2 * (precisions * recalls) / (precisions + recalls + 1e-9)
+            precisions_sliced = precisions[:-1]
+            recalls_sliced = recalls[:-1]
+            f1_scores = 2 * (precisions_sliced * recalls_sliced) / (precisions_sliced + recalls_sliced + 1e-9)
             best_f1_idx = np.argmax(f1_scores)
             optimal_threshold = thresholds[best_f1_idx]
-            best_precision = precisions[best_f1_idx]
+            best_precision = precisions_sliced[best_f1_idx]
             logger.warning(f"  Target precision {target_precision:.2f} not met. optimizing for F1.")
 
         # 4. Evaluate at Optimal Threshold
