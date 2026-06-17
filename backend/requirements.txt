@@ -44,3 +44,4 @@ langchain-community>=0.0.20
 langchain-core>=0.1.25
 ddgs>=9.0.0
 tavily-python>=0.7.0
+openai
