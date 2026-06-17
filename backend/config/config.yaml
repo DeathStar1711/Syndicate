@@ -70,7 +70,7 @@ email:
 llm:
   enabled: true                    # Enable LLM-powered features
   model: "gemma4:e4b"              # Ollama model name
-  timeout_seconds: 60              # Max wait for LLM response
+  timeout_seconds: 300             # Max wait for LLM response (increased for local cold boots)
   temperature: 0.3                 # Low temp for consistent analysis
   features:
     sentiment_analysis: true       # LLM replaces keyword sentiment
