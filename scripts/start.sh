@@ -7,7 +7,13 @@ SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 echo "🚀 Starting Stock-AI V2..."
 
 # Check Ollama
-echo "🤖 Using local Ollama (gemma4) for LLM features"
+if ! pgrep -x "ollama" > /dev/null; then
+    echo "🤖 Starting local Ollama service..."
+    ollama serve >/dev/null 2>&1 &
+    sleep 3
+else
+    echo "🤖 Using local Ollama (gemma4) for LLM features"
+fi
 
 # Start backend
 echo "🧹 Cleaning up existing processes..."
