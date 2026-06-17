@@ -143,6 +143,9 @@ def sentiment_node(state: ValidationState):
 Context: We are evaluating an intraday/swing trade setup (holding period: a few hours to a few weeks). We ONLY take LONG (buy) positions.
 
 Analyze the recent news and overall market sentiment for {sig.get('ticker')}.
+
+News Context:
+{state.get('news_context', 'No news context available')}
 {search_context}
 Market Context:
 {state['market_context']}
@@ -160,8 +163,20 @@ Do NOT output both. Choose one.{limit_warning}
     result = client.generate(prompt, system="You are a sharp Sentiment Analyst. Follow output formats strictly.")
     result = (result or "").strip()
     
-    if result.startswith("SEARCH:"):
-        return {"sentiment_analysis": result}
+    if "SEARCH:" in result:
+        parts = result.split("SEARCH:")
+        query = parts[-1].strip()
+        while len(query) >= 2 and (
+            (query[0] == '"' and query[-1] == '"') or 
+            (query[0] == "'" and query[-1] == "'")
+        ):
+            query = query[1:-1].strip()
+            
+        if search_count >= 2:
+            analysis_text = "Maximum web search limit reached. Sentiment analysis compiled using available context."
+            _broadcast_pipeline_step("Sentiment Analyst", ticker, "done", analysis_text)
+            return {"sentiment_analysis": analysis_text}
+        return {"sentiment_analysis": f"SEARCH: {query}"}
         
     analysis_text = result.replace("FINAL_ANALYSIS:", "").strip()
     if not analysis_text:
@@ -169,6 +184,7 @@ Do NOT output both. Choose one.{limit_warning}
         
     _broadcast_pipeline_step("Sentiment Analyst", ticker, "done", analysis_text)
     return {"sentiment_analysis": analysis_text}
+
 
 
 def sentiment_search_node(state: ValidationState):
@@ -258,8 +274,20 @@ Do NOT output both. Choose one.{limit_warning}
     result = client.generate(prompt, system="You are a pessimistic, cautious Risk Manager. Follow output formats strictly.")
     result = (result or "").strip()
     
-    if result.startswith("SEARCH:"):
-        return {"risk_analysis": result}
+    if "SEARCH:" in result:
+        parts = result.split("SEARCH:")
+        query = parts[-1].strip()
+        while len(query) >= 2 and (
+            (query[0] == '"' and query[-1] == '"') or 
+            (query[0] == "'" and query[-1] == "'")
+        ):
+            query = query[1:-1].strip()
+            
+        if search_count >= 2:
+            analysis_text = "Maximum web search limit reached. Risk assessment compiled using available context."
+            _broadcast_pipeline_step("Risk Manager", ticker, "done", analysis_text)
+            return {"risk_analysis": analysis_text}
+        return {"risk_analysis": f"SEARCH: {query}"}
         
     analysis_text = result.replace("FINAL_ANALYSIS:", "").strip()
     if not analysis_text:
@@ -267,6 +295,7 @@ Do NOT output both. Choose one.{limit_warning}
         
     _broadcast_pipeline_step("Risk Manager", ticker, "done", analysis_text)
     return {"risk_analysis": analysis_text}
+
 
 
 def risk_search_node(state: ValidationState):
@@ -357,12 +386,34 @@ Format required:
         _broadcast_pipeline_step("Head of Trading", ticker, "error", "JSON parsing failed")
         return {"final_result": None}
         
+    raw_verdict = result.get("verdict")
+    verdict_str = ""
+    if isinstance(raw_verdict, str):
+        verdict_str = raw_verdict.strip().lower()
+        
     valid_verdicts = {"strong_buy", "buy", "hold", "avoid"}
-    if result.get("verdict") not in valid_verdicts:
+    if verdict_str in valid_verdicts:
+        result["verdict"] = verdict_str
+    else:
         result["verdict"] = "buy"
         
-    adj_conf = result.get("adjusted_confidence", sig.get("confidence", 50))
-    result["adjusted_confidence"] = max(0, min(100, int(adj_conf)))
+    adj_conf = result.get("adjusted_confidence")
+    if adj_conf is None:
+        adj_conf = sig.get("confidence", 50)
+        
+    parsed_conf = 50
+    try:
+        if isinstance(adj_conf, (int, float)):
+            parsed_conf = int(adj_conf)
+        elif isinstance(adj_conf, str):
+            cleaned = "".join(c for c in adj_conf if c.isdigit())
+            if cleaned:
+                parsed_conf = int(cleaned)
+    except Exception:
+        pass
+        
+    result["adjusted_confidence"] = max(0, min(100, parsed_conf))
+
     result["news_fallback"] = state.get("news_fallback", False)
     
     verdict_str = f'{result["verdict"].upper()} — confidence {result["adjusted_confidence"]}%'
@@ -420,6 +471,7 @@ def validate_signal(
     mistake_history: str = "No past mistakes with this ticker",
     oi_analysis: str = "No OI data available",
     historical_patterns: str = "No patterns detected",
+    news_context: str = "No recent news context available",
 ) -> Optional[Dict]:
     """
     Use LangGraph Multi-Agent debate to validate a trade signal with full context.
@@ -455,6 +507,7 @@ def validate_signal(
         "mistake_history": mistake_history,
         "oi_analysis": oi_analysis,
         "historical_patterns": historical_patterns,
+        "news_context": news_context,
         "sentiment_search_history": "",
         "risk_search_history": "",
         "tech_analysis": "",
@@ -489,11 +542,36 @@ def batch_validate_signals(
     """
     Validate a batch of signals with Multi-Agent LangGraph workflow.
     """
-    mistake_histories = mistake_histories or {}
+    if not mistake_histories:
+        mistake_histories = {}
+        try:
+            from src.ml.mistake_journal import MistakeJournal
+            journal = MistakeJournal()
+            for s in signals:
+                ticker = s.get("ticker")
+                if ticker and ticker not in mistake_histories:
+                    mistake_histories[ticker] = journal.get_ticker_mistake_history(ticker)
+        except Exception as e:
+            logger.error(f"Error fetching mistake history automatically: {e}")
+
 
     from src.data.groww_mcp import GrowwMCPClient
     import asyncio
     
+    def get_company_name_sync(ticker: str) -> str:
+        try:
+            import yfinance as yf
+            import re
+            stock = yf.Ticker(ticker)
+            name = stock.info.get('shortName') or stock.info.get('longName')
+            if name:
+                short_name = name.upper().replace("LTD.", "").replace("LIMITED", "").replace("LTD", "")
+                short_name = re.sub(r'[^A-Z0-9\s]', ' ', short_name).strip()
+                return short_name
+        except Exception:
+            pass
+        return ticker.replace(".NS", "").replace(".BO", "")
+
     client = GrowwMCPClient.get_instance()
     
     async def fetch_mcp_batch(tickers):
@@ -502,17 +580,20 @@ def batch_validate_signals(
             symbol = t.split(".")[0]
             tasks.append(client._get_open_interest_analysis_async(symbol))
             tasks.append(client._get_historical_candlestick_patterns_async(t))
+            tasks.append(asyncio.to_thread(get_company_name_sync, t))
         return await asyncio.gather(*tasks, return_exceptions=True)
 
     tickers = [s.get("ticker", "") for s in signals]
     mcp_results = client.run_coroutine(fetch_mcp_batch(tickers)) or []
     mcp_data_map = {}
     for i, t in enumerate(tickers):
-        oi_res = mcp_results[2*i] if i*2 < len(mcp_results) else None
-        pat_res = mcp_results[2*i+1] if i*2+1 < len(mcp_results) else None
+        oi_res = mcp_results[3*i] if i*3 < len(mcp_results) else None
+        pat_res = mcp_results[3*i+1] if i*3+1 < len(mcp_results) else None
+        name_res = mcp_results[3*i+2] if i*3+2 < len(mcp_results) else None
         mcp_data_map[t] = {
             "oi": str(oi_res) if oi_res and not isinstance(oi_res, Exception) else "No OI data",
-            "patterns": str(pat_res) if pat_res and not isinstance(pat_res, Exception) else "No historical patterns"
+            "patterns": str(pat_res) if pat_res and not isinstance(pat_res, Exception) else "No historical patterns",
+            "company_name": str(name_res) if name_res and not isinstance(name_res, Exception) else t.replace(".NS", "").replace(".BO", "")
         }
 
     for signal in signals:
@@ -520,19 +601,7 @@ def batch_validate_signals(
         
         # Resolve company name once so the LLM doesn't guess
         if "company_name" not in signal:
-            try:
-                import yfinance as yf
-                import re
-                stock = yf.Ticker(ticker)
-                name = stock.info.get('shortName') or stock.info.get('longName')
-                if name:
-                    short_name = name.upper().replace("LTD.", "").replace("LIMITED", "").replace("LTD", "")
-                    short_name = re.sub(r'[^A-Z0-9\s]', ' ', short_name).strip()
-                    signal["company_name"] = short_name
-                else:
-                    signal["company_name"] = ticker.replace(".NS", "").replace(".BO", "")
-            except Exception:
-                signal["company_name"] = ticker.replace(".NS", "").replace(".BO", "")
+            signal["company_name"] = mcp_data_map.get(ticker, {}).get("company_name", ticker.replace(".NS", "").replace(".BO", ""))
         
         # Fetch dynamic agent data (Groww MCP)
         oi_data = mcp_data_map.get(ticker, {}).get("oi", "No OI data")

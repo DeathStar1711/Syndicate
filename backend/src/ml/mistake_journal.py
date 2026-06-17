@@ -363,3 +363,49 @@ class MistakeJournal:
 
         lines.append("=" * 60)
         return "\n".join(lines)
+
+    def get_ticker_mistake_history(self, ticker: str) -> str:
+        """
+        Retrieve and format the recent mistake history for a given ticker.
+        """
+        conn = self._get_conn()
+        cursor = conn.cursor()
+        cursor.execute("""
+            SELECT entry_date, exit_date, pnl_pct, reason_codes, analysis_notes
+            FROM mistakes
+            WHERE ticker = ?
+            ORDER BY created_at DESC
+            LIMIT 5
+        """, (ticker,))
+        rows = cursor.fetchall()
+        conn.close()
+
+        if not rows:
+            return "No past mistakes recorded for this ticker."
+
+        formatted_records = []
+        for i, row in enumerate(rows, 1):
+            entry_date = row["entry_date"] or "N/A"
+            exit_date = row["exit_date"] or "N/A"
+            pnl_pct = row["pnl_pct"]
+            pnl_str = f"{pnl_pct:+.2f}%" if isinstance(pnl_pct, (int, float)) else "N/A"
+            
+            try:
+                reason_codes = json.loads(row["reason_codes"] or "[]")
+            except (json.JSONDecodeError, TypeError):
+                reason_codes = []
+            
+            reasons_str = ", ".join(reason_codes) if reason_codes else "None"
+            notes = row["analysis_notes"] or "No notes available."
+            
+            record_str = (
+                f"Mistake #{i}:\n"
+                f"  Date Range: {entry_date} to {exit_date}\n"
+                f"  P&L %: {pnl_str}\n"
+                f"  Reason Codes: {reasons_str}\n"
+                f"  Analysis Notes:\n{notes}"
+            )
+            formatted_records.append(record_str)
+            
+        return "\n\n".join(formatted_records)
+

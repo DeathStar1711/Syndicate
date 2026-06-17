@@ -133,24 +133,26 @@ class MLPredictor:
             original_confidence = signal["confidence"]
             direction = signal.get("direction", "long")
             
-            if direction == "long":
-                if bullish_prob >= self.threshold:
-                    boost_factor = (bullish_prob - self.threshold) / (1.0 - self.threshold + 1e-6)
-                    adjustment = 10 + int(boost_factor * 10)
-                elif bullish_prob < 0.40:
-                    adjustment = -15
+            prob = bullish_prob if direction == "long" else (1.0 - bullish_prob)
+            
+            if prob >= self.threshold:
+                # Linearly scale adjustment from 0 to 10 points between threshold and 1.0
+                denom = 1.0 - self.threshold
+                if denom > 1e-6:
+                    adjustment = (prob - self.threshold) / denom * 10.0
                 else:
-                    adjustment = 0
-            else: # short
-                # For short trades, we want LOW bullish probability
-                bearish_prob = 1.0 - bullish_prob
-                if bearish_prob >= self.threshold:
-                    boost_factor = (bearish_prob - self.threshold) / (1.0 - self.threshold + 1e-6)
-                    adjustment = 10 + int(boost_factor * 10)
-                elif bearish_prob < 0.40:
-                    adjustment = -15
+                    adjustment = 10.0
+            else:
+                # Linearly scale penalty from 0 to -10 points between threshold and 0.0
+                denom = self.threshold
+                if denom > 1e-6:
+                    adjustment = (prob - self.threshold) / denom * 10.0
                 else:
-                    adjustment = 0
+                    adjustment = -10.0
+
+            # Strictly enforce ±10 points limit and round to nearest int
+            adjustment = max(-10.0, min(10.0, adjustment))
+            adjustment = int(round(adjustment))
 
             new_confidence = max(0, min(100, original_confidence + adjustment))
 

@@ -23,20 +23,29 @@ interface TradingViewChartProps {
   };
 }
 
+const DEFAULT_COLORS = {
+  backgroundColor: 'transparent',
+  textColor: '#9ca3af',
+  upColor: '#10b981',
+  downColor: '#ef4444',
+};
+
 export function TradingViewChart({
   data,
   width = '100%',
   height = 400,
-  colors = {
-    backgroundColor: 'transparent',
-    textColor: '#9ca3af',
-    upColor: '#10b981',
-    downColor: '#ef4444',
-  }
+  colors = DEFAULT_COLORS
 }: TradingViewChartProps) {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const [error, setError] = React.useState<string | null>(null);
+
+  const {
+    backgroundColor = 'transparent',
+    textColor = '#9ca3af',
+    upColor = '#10b981',
+    downColor = '#ef4444'
+  } = colors;
 
   useEffect(() => {
     if (!chartContainerRef.current) return;
@@ -48,8 +57,8 @@ export function TradingViewChart({
       const chart = createChart(chartContainerRef.current, {
         autoSize: true,
         layout: {
-          background: { type: ColorType.Solid, color: colors.backgroundColor || 'transparent' },
-          textColor: colors.textColor,
+          background: { type: ColorType.Solid, color: backgroundColor },
+          textColor: textColor,
         },
         grid: {
           vertLines: { color: 'rgba(255, 255, 255, 0.05)' },
@@ -80,11 +89,11 @@ export function TradingViewChart({
 
       // Add Candlestick Series
       const candlestickSeries = chart.addSeries(CandlestickSeries, {
-        upColor: colors.upColor,
-        downColor: colors.downColor,
+        upColor: upColor,
+        downColor: downColor,
         borderVisible: false,
-        wickUpColor: colors.upColor,
-        wickDownColor: colors.downColor,
+        wickUpColor: upColor,
+        wickDownColor: downColor,
       });
       const candleData = uniqueData.map(d => ({
         time: d.time,
@@ -121,24 +130,51 @@ export function TradingViewChart({
       return () => {
         chart.remove();
       };
-    } catch (e: any) {
+    } catch (e) {
       console.error("TradingView Chart Error:", e);
-      setError(e.message);
+      const msg = e instanceof Error ? e.message : 'Unknown chart error';
+      setTimeout(() => {
+        setError(msg);
+      }, 0);
       if (chartInstance) {
         chartInstance.remove();
       }
     }
-  }, [data, height, colors]);
-
-  if (error) {
-    return <div style={{ color: 'red', padding: '10px', fontFamily: 'monospace', fontSize: '11px' }}>Error: {error}</div>;
-  }
+  }, [data, height, backgroundColor, textColor, upColor, downColor]);
 
   return (
     <div
-      ref={chartContainerRef}
       style={{ width, height, position: 'relative' }}
-      className="tv-chart-container"
-    />
+      className="tv-chart-container-wrapper"
+    >
+      <div
+        ref={chartContainerRef}
+        style={{ width: '100%', height: '100%', visibility: error ? 'hidden' : 'visible' }}
+        className="tv-chart-container"
+      />
+      {error && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          color: 'var(--loss, #ef4444)',
+          padding: '12px',
+          fontFamily: 'monospace',
+          fontSize: '12px',
+          backgroundColor: 'rgba(0, 0, 0, 0.85)',
+          zIndex: 10,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          gap: '8px',
+          border: '1px solid rgba(239, 68, 68, 0.2)',
+          borderRadius: 'var(--radius-md, 8px)'
+        }}>
+          <strong>Chart Error</strong>
+          <span style={{ opacity: 0.85 }}>{error}</span>
+        </div>
+      )}
+    </div>
   );
 }

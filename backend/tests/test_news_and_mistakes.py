@@ -294,6 +294,28 @@ class TestMistakeJournal:
         samples = journal.get_mistake_samples()
         assert samples == []
 
+    def test_get_ticker_mistake_history(self, journal):
+        """Test retrieving formatted mistake history for a ticker."""
+        res_empty = journal.get_ticker_mistake_history("AAPL.NS")
+        assert res_empty == "No past mistakes recorded for this ticker."
+
+        journal.record_mistake(
+            {"ticker": "AAPL.NS", "entry_date": "2026-01-01", "exit_date": "2026-01-02", "pnl_pct": -2.5, "exit_reason": "stop_loss"},
+            {"trend": "bearish"},
+        )
+        journal.record_mistake(
+            {"ticker": "AAPL.NS", "entry_date": "2026-01-03", "exit_date": "2026-01-04", "pnl_pct": -1.2, "exit_reason": "stop_loss"},
+            {"rsi_14": 80},
+        )
+        
+        res = journal.get_ticker_mistake_history("AAPL.NS")
+        assert "Mistake #1" in res
+        assert "Mistake #2" in res
+        assert "-1.20%" in res
+        assert "-2.50%" in res
+        assert "AAPL.NS" in res
+
+
 
 # ── Reason Codes Tests ───────────────────────────────────────────────
 

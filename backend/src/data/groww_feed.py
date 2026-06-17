@@ -82,10 +82,27 @@ class GrowwFeedListener:
     """Manages WebSocket connections for streaming live tick data."""
     
     def __init__(self, tickers: List[str], on_tick_callback: Callable):
-        self.tickers = [t.replace(".NS", "") for t in tickers]
+        self.tickers = [t.replace(".NS", "").replace(".BO", "") for t in tickers]
+        self.ticker_map = {t.replace(".NS", "").replace(".BO", ""): t for t in tickers}
         self.on_tick_callback = on_tick_callback
         self.client = GrowwDataClient()
         self.is_running = False
+        self.ws_client = None
+
+    def subscribe_new_tickers(self, new_tickers: List[str]):
+        clean_new = []
+        for t in new_tickers:
+            clean = t.replace(".NS", "").replace(".BO", "")
+            if clean not in self.tickers:
+                self.tickers.append(clean)
+                self.ticker_map[clean] = t
+                clean_new.append(clean)
+        if clean_new and self.is_running and hasattr(self, 'ws_client') and self.ws_client:
+            try:
+                self.ws_client.subscribe(symbols=clean_new)
+                logger.info(f"Dynamically subscribed to new symbols: {clean_new}")
+            except Exception as e:
+                logger.error(f"Failed to subscribe to new symbols {clean_new}: {e}")
 
     async def connect_and_listen(self):
         """Connect to WebSocket and listen for ticks."""
@@ -106,8 +123,10 @@ class GrowwFeedListener:
                 for tick in ticks:
                     # Parse tick and trigger callback according to actual proto definitions
                     # We'll map the standard structure here
+                    symbol = tick.get("symbol", "")
+                    mapped_ticker = self.ticker_map.get(symbol, symbol + ".NS")
                     parsed_tick = {
-                        "ticker": tick.get("symbol", "") + ".NS",
+                        "ticker": mapped_ticker,
                         "ltp": tick.get("last_traded_price"),
                         "volume": tick.get("volume_traded_today"),
                         "vwap": tick.get("average_traded_price"),
@@ -119,12 +138,14 @@ class GrowwFeedListener:
             @ws.on_connect
             def on_connect(ws_client, response):
                 logger.info("WebSocket connected. Subscribing to tokens.")
+                self.ws_client = ws_client
                 ws_client.subscribe(symbols=self.tickers)
 
             @ws.on_close
             def on_close(ws_client, code, reason):
                 logger.warning(f"WebSocket closed: {code} - {reason}")
                 self.is_running = False
+                self.ws_client = None
 
             ws.connect()
             
@@ -135,6 +156,8 @@ class GrowwFeedListener:
         except Exception as e:
             logger.error(f"WebSocket execution failed: {e}")
             self.is_running = False
+            self.ws_client = None
 
     def stop(self):
         self.is_running = False
+        self.ws_client = None

@@ -66,6 +66,10 @@ class PaperTrader:
         metadata_dict = {
             "atr": signal.get("atr"),
             "rsi": signal.get("rsi"),
+            "rsi_14": signal.get("rsi_14") or signal.get("rsi"),
+            "volume_ratio": signal.get("volume_ratio"),
+            "atr_percentile": signal.get("atr_percentile", 50.0),
+            "returns_1d": signal.get("returns_1d", 0.0),
             "trend": signal.get("trend"),
             "volatility_regime": signal.get("volatility_regime"),
             "trade_type": signal.get("trade_type", "daily"),
@@ -85,7 +89,10 @@ class PaperTrader:
             reasons=json.dumps(signal.get("reasons", [])),
             entry_date=now_ist().isoformat(),
             status="open",
-            metadata_json=json.dumps(metadata_dict)
+            metadata_json=json.dumps(metadata_dict),
+            llm_verdict=signal.get("llm_verdict"),
+            llm_reasoning=signal.get("llm_reasoning"),
+            cons=json.dumps(signal.get("cons", [])) if isinstance(signal.get("cons"), (list, dict)) else signal.get("cons")
         )
 
         with SessionLocal() as db:
@@ -94,12 +101,11 @@ class PaperTrader:
             db.refresh(trade)
             trade_id = trade.id
 
-            current_capital = self.get_capital()
-            new_capital = current_capital - position_value
-            
-            cap_state = db.query(PortfolioState).filter(PortfolioState.key == "current_capital").first()
-            if cap_state:
-                cap_state.value = str(new_capital)
+            from sqlalchemy import text
+            db.execute(
+                text("UPDATE portfolio_state SET value = CAST(CAST(value AS REAL) - :pos_val AS TEXT) WHERE key = 'current_capital'"),
+                {"pos_val": position_value}
+            )
             db.commit()
 
         logger.info(

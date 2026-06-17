@@ -166,11 +166,11 @@ def retrain_model(config: Optional[dict] = None) -> Dict:
     if current_model is None:
         deploy_decision = True
         logger.info("  Reason: No current model")
-    elif results["test_precision"] >= 0.60 and precision_lift >= 1.2:
+    elif results["test_precision"] >= 0.60 and precision_lift >= 1.2 and improvement >= min_improvement:
         deploy_decision = True
-        logger.info("  Reason: Precision > 60% and Lift > 1.2x")
+        logger.info("  Reason: Precision > 60%, Lift > 1.2x, and Accuracy Improvement >= min_oos_improvement")
     else:
-        logger.info("  Reason: Failed precision criteria")
+        logger.info("  Reason: Failed precision criteria or accuracy improvement threshold")
 
     if deploy_decision:
         logger.info("✅ DEPLOYING new model (improvement threshold met)")
@@ -288,27 +288,24 @@ def _build_sample_weights(
         if not matchable:
             continue
 
-        # Vectorized similarity: check each feature column at once
-        match_mask = np.ones(len(X), dtype=bool)
-        matched_features = 0
+        # Soft similarity: count matches across features instead of strict AND
+        match_counts = np.zeros(len(X))
         for feat_name, mistake_val in matchable.items():
             try:
                 threshold = available_comparisons[feat_name]
                 col_values = X[feat_name].values
                 within_range = np.abs(col_values - float(mistake_val)) <= threshold
-                match_mask &= within_range
-                matched_features += 1
+                match_counts += within_range.astype(int)
             except (ValueError, TypeError):
                 continue
 
-        if matched_features > 0:
-            # Similarity score = fraction of features that matched
-            # For matched samples, apply upweight proportionally
-            match_indices = np.where(match_mask)[0]
-            for idx in match_indices:
-                similarity = matched_features / len(matchable)
-                if similarity > 0.5:
-                    weights[idx] *= (1.0 + (upweight_factor - 1.0) * similarity)
+        # If at least 50% of available comparison features match, apply upweighting
+        min_matches = max(1, int(len(matchable) * 0.5))
+        match_mask = match_counts >= min_matches
+        match_indices = np.where(match_mask)[0]
+        for idx in match_indices:
+            similarity = match_counts[idx] / len(matchable)
+            weights[idx] *= (1.0 + (upweight_factor - 1.0) * similarity)
 
     # Cap weights to prevent extreme values
     weights = np.clip(weights, 1.0, upweight_factor * 2)

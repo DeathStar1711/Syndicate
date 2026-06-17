@@ -166,6 +166,8 @@ class StrategyEngine:
             "sentiment_score": round(sentiment.get("combined_score", 0), 4),
             "news_headline_count": sentiment.get("news", {}).get("headline_count", 0),
             "latest_news_headline": sentiment.get("news", {}).get("latest_headline"),
+            "adx": round(float(latest.get("adx", 25.0)), 2) if not pd.isna(latest.get("adx", np.nan)) else 25.0,
+            "returns_1d": round(float(latest.get("returns_1d", 0.0)), 4) if not pd.isna(latest.get("returns_1d", np.nan)) else 0.0,
         }
 
         logger.info(

@@ -46,6 +46,9 @@ class Trade(Base):
     pnl_pct = Column(Float, nullable=True)
     status = Column(String, default="open", nullable=False)
     metadata_json = Column("metadata", Text, nullable=True)
+    llm_verdict = Column(String, nullable=True)
+    llm_reasoning = Column(Text, nullable=True)
+    cons = Column(Text, nullable=True)
 
 class Signal(Base):
     __tablename__ = "signals"

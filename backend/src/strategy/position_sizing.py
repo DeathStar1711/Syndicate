@@ -18,6 +18,7 @@ def calculate_position_size(
     max_position_pct: float = 0.20,
     win_probability: Optional[float] = None,
     risk_reward: Optional[float] = None,
+    direction: str = "long",
 ) -> Dict[str, float]:
     """
     Calculate position size based on risk management rules.
@@ -28,6 +29,9 @@ def calculate_position_size(
         stop_loss: Stop-loss price
         max_risk_pct: Maximum risk per trade as fraction of capital (default 2%)
         max_position_pct: Maximum position size as fraction of capital (default 20%)
+        win_probability: Probability of winning trade
+        risk_reward: Risk-reward ratio
+        direction: Trade direction ('long' or 'short')
     
     Returns:
         Dictionary with position sizing details
@@ -36,8 +40,25 @@ def calculate_position_size(
         logger.error("Invalid inputs for position sizing")
         return {"shares": 0, "risk_amount": 0, "position_value": 0, "error": "Invalid inputs"}
 
+    if direction == "long" and stop_loss >= entry_price:
+        logger.warning("Stop loss must be below entry price for long trades")
+        return {
+            "shares": 0,
+            "entry_price": entry_price,
+            "stop_loss": stop_loss,
+            "risk_per_share": 0.0,
+            "position_value": 0.0,
+            "risk_amount": 0.0,
+            "risk_pct": 0.0,
+            "capital_used_pct": 0.0,
+            "error": "Stop loss must be below entry price for long trades"
+        }
+
     # Risk per share
-    risk_per_share = abs(entry_price - stop_loss)
+    if direction == "long":
+        risk_per_share = entry_price - stop_loss
+    else:
+        risk_per_share = abs(entry_price - stop_loss)
     
     if risk_per_share <= 0:
         logger.error("Stop-loss equals entry price — cannot calculate position size")
@@ -51,7 +72,7 @@ def calculate_position_size(
         b = risk_reward
         kelly_fraction = p - (q / b)
         
-        if kelly_fraction > 0:
+        if kelly_fraction > 1e-9:
             # Half-Kelly for safety
             half_kelly = kelly_fraction / 2.0
             # Cap Kelly fraction by the user's maximum risk to prevent overallocation
@@ -59,8 +80,21 @@ def calculate_position_size(
             logger.debug(f"Kelly fraction: {kelly_fraction:.3f}, Using risk: {dynamic_risk_pct:.3f}")
             max_risk_pct = dynamic_risk_pct
         else:
-            # Negative expectation according to Kelly, risk minimum
-            max_risk_pct = 0.0025 # 0.25% minimum risk for extremely low probability trades
+            # Reject trade on negative/zero expectation
+            logger.info("Kelly Criterion returned negative or zero expectation — rejecting trade.")
+            return {
+                "shares": 0,
+                "entry_price": entry_price,
+                "stop_loss": stop_loss,
+                "risk_per_share": round(risk_per_share, 2),
+                "position_value": 0.0,
+                "risk_amount": 0.0,
+                "risk_pct": 0.0,
+                "capital_used_pct": 0.0,
+                "reason": "Negative or zero expectation (Kelly Criterion)",
+                "error": "Negative or zero expectation"
+            }
+
 
     # Maximum amount willing to lose on this trade
     max_risk_amount = capital * max_risk_pct

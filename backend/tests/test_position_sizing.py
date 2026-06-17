@@ -68,6 +68,64 @@ class TestPositionSizing:
         assert result["shares"] >= 0
         assert result["position_value"] <= 10000
 
+    def test_kelly_negative_expectation(self):
+        """Kelly fraction <= 0 should reject the trade (shares=0)."""
+        result = calculate_position_size(
+            capital=100000,
+            entry_price=100,
+            stop_loss=95,
+            win_probability=0.3,
+            risk_reward=2.0
+        )
+        assert result["shares"] == 0
+        assert result["position_value"] == 0.0
+        assert result["risk_amount"] == 0.0
+        assert result["risk_pct"] == 0.0
+        assert result["capital_used_pct"] == 0.0
+        assert "error" in result or "reason" in result
+
+    def test_stop_loss_direction_validation_long(self):
+        """If direction is 'long' and stop_loss >= entry_price, the trade should be rejected with zeroed values."""
+        result = calculate_position_size(
+            capital=100000,
+            entry_price=100,
+            stop_loss=105,
+            direction="long",
+        )
+        assert result["shares"] == 0
+        assert result["entry_price"] == 100
+        assert result["stop_loss"] == 105
+        assert result["risk_per_share"] == 0.0
+        assert result["position_value"] == 0.0
+        assert result["risk_amount"] == 0.0
+        assert result["risk_pct"] == 0.0
+        assert result["capital_used_pct"] == 0.0
+        assert result["error"] == "Stop loss must be below entry price for long trades"
+
+        result_equal = calculate_position_size(
+            capital=100000,
+            entry_price=100,
+            stop_loss=100,
+            direction="long",
+        )
+        assert result_equal["shares"] == 0
+        assert result_equal["error"] == "Stop loss must be below entry price for long trades"
+
+    def test_kelly_expectation_epsilon_check(self):
+        """Kelly fraction of exactly 0 or 5.55e-17 due to precision should be rejected."""
+        # e.g., p=0.4, q=0.6, b=1.5 -> p - q/b = 0.4 - 0.6/1.5 = 0
+        result = calculate_position_size(
+            capital=100000,
+            entry_price=100,
+            stop_loss=95,
+            win_probability=0.4,
+            risk_reward=1.5
+        )
+        assert result["shares"] == 0
+        assert "error" in result
+
+
+
 
 class TestStopLossTarget:
     def test_long_stop_loss(self):

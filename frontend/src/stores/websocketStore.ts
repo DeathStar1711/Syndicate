@@ -3,6 +3,7 @@ import {
   addPipelineStep,
   setShowLog as pipelineSetShowLog,
   finishGeneration,
+  type PipelineStep,
 } from './pipelineStore';
 import { invalidateCache } from './dataCache';
 
@@ -40,20 +41,23 @@ export function connectWs() {
   if (ws && (ws.readyState === WebSocket.CONNECTING || ws.readyState === WebSocket.OPEN)) return;
 
   try {
-    ws = new WebSocket(api.getWsUrl());
+    const currentWs = new WebSocket(api.getWsUrl());
+    ws = currentWs;
     let ping: ReturnType<typeof setInterval>;
 
-    ws.onopen = () => {
+    currentWs.onopen = () => {
+      if (ws !== currentWs) return;
       state = { ...state, connected: true };
       notify();
       ping = setInterval(() => {
-        if (ws?.readyState === WebSocket.OPEN) {
-          ws.send(JSON.stringify({ type: 'ping' }));
+        if (currentWs.readyState === WebSocket.OPEN) {
+          currentWs.send(JSON.stringify({ type: 'ping' }));
         }
       }, 30000);
     };
 
-    ws.onmessage = (event) => {
+    currentWs.onmessage = (event) => {
+      if (ws !== currentWs) return;
       try {
         const msg: WsMessage = JSON.parse(event.data);
         state = { ...state, lastMessage: msg };
@@ -67,7 +71,7 @@ export function connectWs() {
 
         // Pipeline listener logic (moved from Signals.tsx)
         if (msg.type === 'pipeline_step') {
-          const step = msg.data as any;
+          const step = msg.data as PipelineStep;
           addPipelineStep(step);
           pipelineSetShowLog(true);
 
@@ -86,19 +90,24 @@ export function connectWs() {
       } catch { /* ignore malformed */ }
     };
 
-    ws.onclose = () => {
+    currentWs.onclose = () => {
       clearInterval(ping);
-      state = { ...state, connected: false };
-      notify();
-      ws = null;
+      if (ws === currentWs) {
+        state = { ...state, connected: false };
+        notify();
+        ws = null;
 
-      if (!intentionalClose) {
-        clearTimeout(reconnectTimer);
-        reconnectTimer = window.setTimeout(connectWs, 3000);
+        if (!intentionalClose) {
+          clearTimeout(reconnectTimer);
+          reconnectTimer = window.setTimeout(connectWs, 3000);
+        }
       }
     };
 
-    ws.onerror = () => ws?.close();
+    currentWs.onerror = () => {
+      if (ws !== currentWs) return;
+      currentWs.close();
+    };
   } catch {
     state = { ...state, connected: false };
     notify();

@@ -21,25 +21,47 @@ export function Settings() {
 
   // Listen for ML Training pipeline_step events via WebSocket
   useEffect(() => {
+    let active = true;
+    let timer: ReturnType<typeof setTimeout>;
+
     if (!lastMessage) return;
-    const msg = lastMessage as { type: string; data: any };
+    const msg = lastMessage as {
+      type: string;
+      data?: {
+        step?: string;
+        status?: 'start' | 'done' | 'error';
+        content?: string;
+      };
+    };
     if (msg.type === 'pipeline_step' && msg.data?.step?.startsWith('ML Training')) {
       const step: TrainingStep = {
         step: msg.data.step,
-        status: msg.data.status,
+        status: msg.data.status || 'start',
         content: msg.data.content || '',
         timestamp: Date.now(),
       };
-      setTrainingSteps(prev => [...prev, step]);
+      
+      setTimeout(() => {
+        if (active) {
+          setTrainingSteps(prev => [...prev, step]);
+        }
+      }, 0);
 
       // Auto-refresh ML status when training completes
       if (msg.data.step === 'ML Training: Complete' || msg.data.status === 'error') {
-        setTimeout(() => {
-          setRunning(null);
-          refetchML();
+        timer = setTimeout(() => {
+          if (active) {
+            setRunning(null);
+            refetchML();
+          }
         }, 1500);
       }
     }
+
+    return () => {
+      active = false;
+      clearTimeout(timer);
+    };
   }, [lastMessage, refetchML]);
 
   // Auto-scroll training log

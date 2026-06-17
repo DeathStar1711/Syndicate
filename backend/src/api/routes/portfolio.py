@@ -175,6 +175,9 @@ async def add_trade_to_portfolio(req: AddTradeRequest):
         "risk_reward": req.risk_reward,
         "confidence": req.confidence,
         "reasons": req.reasons,
+        "cons": req.cons,
+        "llm_verdict": req.llm_verdict,
+        "llm_reasoning": req.llm_reasoning,
         "position": position,
         "trade_type": "dashboard_manual",
         "atr": abs(current_price - req.stop_loss) / 1.5,  # Approximate ATR

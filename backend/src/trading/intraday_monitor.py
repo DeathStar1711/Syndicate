@@ -150,15 +150,35 @@ class IntradayMonitor:
         from src.data.tick_recorder import TickRecorder
         import asyncio
 
+        import time
         recorder = TickRecorder()
 
         open_trades_cache = self.trader.get_open_positions()
+        last_cache_refresh = time.time()
 
         def on_tick(tick_data):
-            nonlocal open_trades_cache
+            nonlocal open_trades_cache, last_cache_refresh
             # 1. Record the tick for future ML
             recorder.record_tick(tick_data)
             
+            # Periodically refresh the cache from the DB (every 10 seconds)
+            current_time = time.time()
+            if current_time - last_cache_refresh >= 10:
+                try:
+                    latest_open_trades = self.trader.get_open_positions()
+                    cache_tickers = {t["ticker"] for t in open_trades_cache}
+                    latest_tickers = {t["ticker"] for t in latest_open_trades}
+                    new_tickers = list(latest_tickers - cache_tickers)
+                    
+                    if new_tickers:
+                        logger.info(f"New tickers detected in open positions: {new_tickers}. Subscribing...")
+                        listener.subscribe_new_tickers(new_tickers)
+                    
+                    open_trades_cache = latest_open_trades
+                    last_cache_refresh = current_time
+                except Exception as e:
+                    logger.error(f"Error refreshing open trades cache in live monitor: {e}")
+
             # 2. Check exits instantly
             ticker = tick_data.get("ticker")
             ltp = tick_data.get("ltp")

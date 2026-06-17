@@ -95,26 +95,59 @@ function PipelineLog({ steps, onClose }: { steps: PipelineStep[]; onClose: () =>
 
 
 function SignalChart({ ticker }: { ticker: string }) {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<{
+    time: string;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    value?: number;
+  }[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [prevTicker, setPrevTicker] = useState(ticker);
+
+  if (ticker !== prevTicker) {
+    setPrevTicker(ticker);
+    setLoading(true);
+    setError(null);
+  }
 
   // useEffect-based because chart data is per-ticker, not a global cache concern
   useEffect(() => {
+    let active = true;
     api.getHistoricalData(ticker, '3mo').then((res) => {
+      if (!active) return;
       if (res.status === 'ok' && res.data) {
         setData(res.data);
+      } else {
+        setError(res.message || 'Failed to fetch historical chart data.');
       }
       setLoading(false);
     }).catch((err) => {
+      if (!active) return;
       console.error("Chart data error:", err);
+      setError(err instanceof Error ? err.message : 'Unknown data fetching error');
       setLoading(false);
     });
+
+    return () => {
+      active = false;
+    };
   }, [ticker]);
 
   if (loading) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 250 }}>
         <div className="loading-spinner" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 250, color: 'var(--loss)', fontSize: 13, textAlign: 'center', padding: 16 }}>
+        Error loading chart: {error}
       </div>
     );
   }

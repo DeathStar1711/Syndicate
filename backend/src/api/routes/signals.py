@@ -5,6 +5,7 @@ POST /api/signals/generate — force regenerate
 """
 import os
 import json
+import math
 from datetime import datetime, timedelta
 from typing import Optional
 from fastapi import APIRouter, BackgroundTasks, Depends
@@ -18,6 +19,17 @@ from src.db.models import Signal
 logger = get_logger("stock_ai.api")
 router = APIRouter()
 
+def sanitize_floats(d):
+    """Recursively replaces float NaN/Inf values with None."""
+    if isinstance(d, dict):
+        return {k: sanitize_floats(v) for k, v in d.items()}
+    elif isinstance(d, list):
+        return [sanitize_floats(v) for v in d]
+    elif isinstance(d, float):
+        if math.isnan(d) or math.isinf(d):
+            return None
+    return d
+
 def _save_signals_to_db(signals_data: dict):
     """Save signals to database for persistence. Clears old signals first."""
     try:
@@ -26,14 +38,15 @@ def _save_signals_to_db(signals_data: dict):
 
             timestamp = datetime.fromisoformat(signals_data["timestamp"])
             for sig in signals_data.get("data", []):
+                sanitized_sig = sanitize_floats(sig)
                 new_signal = Signal(
-                    ticker=sig.get("ticker"),
-                    signal=sig.get("direction", "long"), # Or whatever key is used
-                    confidence=sig.get("confidence", 0),
-                    entry_price=sig.get("entry_price"),
-                    stop_loss=sig.get("stop_loss"),
-                    target=sig.get("target"),
-                    reasoning=json.dumps(sig), # Store the full dict in reasoning for now to keep it flexible
+                    ticker=sanitized_sig.get("ticker"),
+                    signal=sanitized_sig.get("direction", "long"), # Or whatever key is used
+                    confidence=sanitized_sig.get("confidence", 0),
+                    entry_price=sanitized_sig.get("entry_price"),
+                    stop_loss=sanitized_sig.get("stop_loss"),
+                    target=sanitized_sig.get("target"),
+                    reasoning=json.dumps(sanitized_sig), # Store the full dict in reasoning for now to keep it flexible
                     date=timestamp,
                     executed=False
                 )
