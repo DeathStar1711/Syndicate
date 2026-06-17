@@ -66,10 +66,10 @@ email:
   send_exit_alerts: false
   send_daily_report: false
 
-# ── V2: LLM Configuration (llama-3.3-70b-versatile via Groq) ──────────────
+# ── V2: LLM Configuration (gemma4:e4b via Ollama) ──────────────
 llm:
   enabled: true                    # Enable LLM-powered features
-  model: "llama-3.3-70b-versatile" # Groq model name
+  model: "gemma4:e4b"              # Ollama model name
   timeout_seconds: 60              # Max wait for LLM response
   temperature: 0.3                 # Low temp for consistent analysis
   features:
