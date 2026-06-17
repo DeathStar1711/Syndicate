@@ -37,3 +37,4 @@ if pgrep -f "chrome-devtools-mcp" > /dev/null ; then
 fi
 
 echo "✅ All Stock-AI services have been cleanly terminated."
+echo "ℹ️  Note: Local Ollama service is kept alive for other applications."

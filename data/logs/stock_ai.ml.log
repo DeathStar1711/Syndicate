@@ -105,3 +105,71 @@
 2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:162 |   News features: 3
 2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:163 |   Market features: 7
 2026-06-16 23:08:25 | stock_ai.ml | INFO     | trainer:164 | Label distribution: {0: 335, 1: 125}
+2026-06-17 19:40:00 | stock_ai.ml | INFO     | retrain:64 | ======================================================================
+2026-06-17 19:40:00 | stock_ai.ml | INFO     | retrain:65 | MODEL RETRAINING — 2026-06-17
+2026-06-17 19:40:00 | stock_ai.ml | INFO     | retrain:66 | ======================================================================
+2026-06-17 19:40:00 | stock_ai.ml | INFO     | retrain:73 | Step 0: Downloading historical data...
+2026-06-17 19:40:20 | stock_ai.ml | INFO     | retrain:83 | Step 1: Preparing features (technical + news)...
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | trainer:159 | Prepared 39732 samples from 86 tickers
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | trainer:160 |   Technical features: 23
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | trainer:161 |   Technical features: 23
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | trainer:162 |   News features: 3
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | trainer:163 |   Market features: 7
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | trainer:164 | Label distribution: {0: 24920, 1: 14812}
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | retrain:96 | Step 2: Analyzing past mistakes...
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | mistake_journal:329 | Loaded 0 mistake samples for retraining
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | retrain:115 |   No past mistakes recorded yet — first training run
+2026-06-17 19:41:32 | stock_ai.ml | INFO     | retrain:123 | Step 3: Training new model (with mistake upweighting)...
+2026-06-17 19:41:37 | stock_ai.ml | INFO     | trainer:242 |   Best params: {'subsample': 0.8, 'n_estimators': 100, 'max_depth': 7, 'learning_rate': 0.05, 'colsample_bytree': 0.8}
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:264 |   Baseline Precision (Random): 0.3728
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:302 |   Optimal Threshold: 0.4305
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:303 |   Precision @ Threshold: 0.6501 (Baseline: 0.3728)
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:304 |   Recall @ Threshold: 0.4275
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:346 | Training complete:
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:347 |   CV Precision: 0.6973 ± 0.0808
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | trainer:351 |   News feature importance: 6.2% of total
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:137 | Step 4: Comparing with current model...
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:150 |   Current model accuracy: 0.6804
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:151 |   New model accuracy:     0.6712
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:152 |   Improvement:            -0.0092
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:153 |   Min required:           0.0200
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:162 |   Model Precision: 0.6501
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:163 |   Baseline Precision: 0.3728
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:164 |   Precision Lift: 1.74x
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:173 |   Reason: Failed precision criteria or accuracy improvement threshold
+2026-06-17 19:41:46 | stock_ai.ml | INFO     | retrain:225 | ❌ NOT deploying — precision criteria not met
+2026-06-17 19:44:50 | stock_ai.ml | INFO     | retrain:64 | ======================================================================
+2026-06-17 19:44:50 | stock_ai.ml | INFO     | retrain:65 | MODEL RETRAINING — 2026-06-17
+2026-06-17 19:44:50 | stock_ai.ml | INFO     | retrain:66 | ======================================================================
+2026-06-17 19:44:50 | stock_ai.ml | INFO     | retrain:73 | Step 0: Downloading historical data...
+2026-06-17 19:44:53 | stock_ai.ml | INFO     | retrain:83 | Step 1: Preparing features (technical + news)...
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | trainer:159 | Prepared 39732 samples from 86 tickers
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | trainer:160 |   Technical features: 23
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | trainer:161 |   Technical features: 23
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | trainer:162 |   News features: 3
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | trainer:163 |   Market features: 7
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | trainer:164 | Label distribution: {0: 24920, 1: 14812}
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | retrain:96 | Step 2: Analyzing past mistakes...
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | mistake_journal:329 | Loaded 0 mistake samples for retraining
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | retrain:115 |   No past mistakes recorded yet — first training run
+2026-06-17 19:46:07 | stock_ai.ml | INFO     | retrain:123 | Step 3: Training new model (with mistake upweighting)...
+2026-06-17 19:46:13 | stock_ai.ml | INFO     | trainer:242 |   Best params: {'subsample': 0.8, 'n_estimators': 100, 'max_depth': 7, 'learning_rate': 0.05, 'colsample_bytree': 0.8}
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:264 |   Baseline Precision (Random): 0.3728
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:302 |   Optimal Threshold: 0.4447
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:303 |   Precision @ Threshold: 0.6500 (Baseline: 0.3728)
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:304 |   Recall @ Threshold: 0.4334
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:346 | Training complete:
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:347 |   CV Precision: 0.6880 ± 0.0788
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:351 |   News feature importance: 6.2% of total
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:137 | Step 4: Comparing with current model...
+2026-06-17 19:46:23 | stock_ai.ml | WARNING  | trainer:373 | No trained model found
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:150 |   Current model accuracy: 0.0000
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:151 |   New model accuracy:     0.6815
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:152 |   Improvement:            +0.6815
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:153 |   Min required:           0.0200
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:162 |   Model Precision: 0.6500
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:163 |   Baseline Precision: 0.3728
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:164 |   Precision Lift: 1.74x
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:168 |   Reason: No current model
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | retrain:176 | ✅ DEPLOYING new model (improvement threshold met)
+2026-06-17 19:46:23 | stock_ai.ml | INFO     | trainer:365 | Model saved to /Users/shubhamac/Desktop/AI Projects/Stock-AI-V2/backend/data/models/model_latest.pkl

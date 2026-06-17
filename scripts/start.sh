@@ -6,8 +6,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 echo "🚀 Starting Stock-AI V2..."
 
-# Check Groq API
-echo "🤖 Using Groq Cloud API for LLM features"
+# Check Ollama
+echo "🤖 Using local Ollama (gemma4) for LLM features"
 
 # Start backend
 echo "🧹 Cleaning up existing processes..."
